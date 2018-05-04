@@ -7,11 +7,11 @@
 <script>
     var app = angular.module('myApp', []);
     app.controller('myCtrl', function($scope) {
-        $scope.testing = "";
-        $scope.ServiceList = {  };
+        $scope.ServiceList = {};
         $scope.ServiceList.Service_Id = 0;
         $scope.ServiceList.Service_Name = "";
-        $scope.ServiceList.Service_status = True;
+        $scope.ServiceList.Service_status = true;
+ 
       //  $scope.StudentList = { StudentId: 0, StudentName: "", StudentNumber: "" };
         $scope.list = [];
         $scope.Grid = [];
@@ -35,38 +35,56 @@
             });
         }
         $scope.LoadGrid = function () {
-            JsonCallParam("AngularPractice", "GetStudent");
+            JsonCallParam("Admin_Services", "Get_Service_data");
             $scope.Grid = list;
         };
+
         $scope.LoadGrid();
 
+        $scope.Edit = function (obj) {
+            //alert(obj.Service_Id);
+            $scope.ServiceList.Service_Id = obj.Service_Id;
+
+            JsonCallParam("Admin_services", "Get_Services_data", { "id": obj.Service_Id });
+//            alert(list);
+            //$scope.ServiceList = list;
+            $scope.ServiceList.Service_Name = list.Item1;
+            $scope.ServiceList.Service_status = list.Item2;
+            alert($scope.ServiceList.Service_status);
+            //console.log($scope.ServiceList.Service_Name);
+            
+
+
+        };
+
+
         $scope.Save = function () {
-            alert($scope.ServiceList.Service_Name);
-            //if ($scope.StudentList.StudentId == 0) {
-            //    var pram = {
+            //alert($scope.ServiceList.Service_Id);
+            if ($scope.ServiceList.Service_Id == 0) {
+                var pram = {
 
-            //        'StudentList': JSON.stringify($scope.StudentList)
+                    'ServiceList': JSON.stringify($scope.ServiceList)
 
-            //    };
+                };
 
-            //    JsonCallParam("AngularPractice", "Insert", pram);
+                JsonCallParam("Admin_services", "Insert", pram);
 
-            //}
-            //else {
+            }
+            else {
 
 
-            //    JsonCallParam("RawRice_Sales", "Update_sales", pram);
-            //}
-            //$scope.LoadGrid();
-            //$scope.Clear();
+                JsonCallParam("Admin_Services", "Update", pram);
+            }
+            $scope.LoadGrid();
+            $scope.Clear();
 
         };
 
         $scope.Clear = function () {
             $scope.ServiceList.Service_Id = 0;
             $scope.ServiceList.Service_Name = "";
-            $scope.ServiceList.Service_status = True;
-            $scope.ServiceList.Service_date = @DateTime.Now;
+            $scope.ServiceList.Service_status = true;
+            
         };
 
 
@@ -77,12 +95,20 @@
 </script>
 
 
+@*<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.tesiting = "waled";
+    $scope.ServiceList = {};
+    $scope.ServiceList.Service_Id = 0;
+    $scope.ServiceList.Service_Name = "";
+    
+});
+</script>*@
 
 
 
-
-
-<div >
+<div ng-app="myApp" ng-controller="myCtrl">
 
 
     <div class="row page-titles">
@@ -105,27 +131,71 @@
 
     <!-- Container fluid  -->
     <!-- ============================================================== -->
-    <div class="container-fluid" ng-app="myApp" ng-controller="myCtrl">
+    <div class="container-fluid">
         <!-- ============================================================== -->
         <!-- Start Page Content -->
         <!-- ============================================================== -->
-        <div class="row">{{testing}}
+        <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
 
                         <form class="floating-labels m-t-40">
                             <div class="form-group m-b-40">
-                                <input type="text" ng-mode="testing" class="form-control" id="input1">
+                                <input type="text" ng-model="ServiceList.Service_Name" value="" class="form-control" id="input1">
                                 <span class="bar"></span>
                                 <label for="input1">SERVICE NAME</label>
                             </div>
-                            
+
+                            <div class="form-group m-b-40">
+                                <select class="form-control"  ng-model="ServiceList.Service_status">                   
+                                    <option value="true">Active</option>
+                                    <option value="false">InActive</option>
+                                </select><span class="bar"></span>
+                                <label for="input6">SERVICE STATUS</label>
+                            </div>
+
                             <button type="button" ng-click="Save()" class="btn waves-effect waves-light btn-outline-primary">Save</button>
                         </form>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive m-t-40">
+                            <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Service Id</th>
+                                        <th>Service Name</th>
+                                        <th>Service Status</th>
+                                      
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Service Id</th>
+                                        <th>Service Name</th>
+                                        <th>Service Status</th>
+                                      
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <tr ng-repeat="item in Grid">
+
+                                        <td>{{item.Service_Id}} </td>
+                                        <td>{{item.Service_Name}} </td>
+
+                                        <td><button type="submit" ng-click="Edit(item)">edit</button> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
+
         </div>
         <!-- ============================================================== -->
         <!-- End PAge Content -->
@@ -133,11 +203,74 @@
     </div>
     <!-- ============================================================== -->
     <!-- End Container fluid  -->
-
-
-
-
-
-
+    
+        
+        
 
 </div>
+
+@section Scripts {
+
+<script src="~/content/admin_content/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<!-- start - This is for export functionality only -->
+<script src="~/content/admin_content/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script src="~/content/admin_content/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+<script src="~/content/admin_content/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="~/content/admin_content/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script src="~/content/admin_content/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script src="~/content/admin_content/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script src="~/content/admin_content/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+<!-- end - This is for export functionality only -->
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+        $(document).ready(function() {
+            var table = $('#example').DataTable({
+                "columnDefs": [{
+                    "visible": false,
+                    "targets": 2
+                }],
+                "order": [
+                    [2, 'asc']
+                ],
+                "displayLength": 25,
+                "drawCallback": function(settings) {
+                    var api = this.api();
+                    var rows = api.rows({
+                        page: 'current'
+                    }).nodes();
+                    var last = null;
+                    api.column(2, {
+                        page: 'current'
+                    }).data().each(function(group, i) {
+                        if (last !== group) {
+                            $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                            last = group;
+                        }
+                    });
+                }
+            });
+            // Order by the grouping
+            $('#example tbody').on('click', 'tr.group', function() {
+                var currentOrder = table.order()[0];
+                if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                    table.order([2, 'desc']).draw();
+                } else {
+                    table.order([2, 'asc']).draw();
+                }
+            });
+        });
+    });
+    $('#example23').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+</script>
+<!-- ============================================================== -->
+<!-- Style switcher -->
+<!-- ============================================================== -->
+<script src="~/content/admin_content/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+}
+

@@ -27,7 +27,9 @@ namespace Mnk.Models
 
         public static ApplicationDbContext Create()
         {
+
             return new ApplicationDbContext();
         }
+        public DbSet<Services> Servicess { get; set; }
     }
 }
