@@ -416,6 +416,7 @@
     <Content Include="Views\Board_Availbality\Details.cshtml" />
     <Content Include="Views\Board_Availbality\Edit.cshtml" />
     <Content Include="Views\Board_Availbality\Index.cshtml" />
+    <Content Include="Views\Shared\_Sitelayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -428,6 +429,12 @@
     <Folder Include="Content\admin_content\lib\" />
     <Folder Include="Content\admin_content\scss\" />
     <Folder Include="Content\Images\" />
+    <Folder Include="Content\Site_content\assets\" />
+    <Folder Include="Content\Site_content\css\" />
+    <Folder Include="Content\Site_content\fonts\" />
+    <Folder Include="Content\Site_content\images\" />
+    <Folder Include="Content\Site_content\js\" />
+    <Folder Include="Content\Site_content\revolution\" />
     <Folder Include="Views\Board\" />
   </ItemGroup>
   <ItemGroup>
