@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Mnk.Models.Board>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Board_Availbality.Availability_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Board_city.Board_City_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Board_Location.Board_location_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Board_medium.Board_Medium_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Broard_Site_code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Broard_Traffic_from)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Broard_Traffic_to)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Broard_Width)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Broard_Height)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Board_Availbality.Availability_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Board_city.Board_City_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Board_Location.Board_location_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Board_medium.Board_Medium_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Broard_Site_code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Broard_Traffic_from)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Broard_Traffic_to)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Broard_Width)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Broard_Height)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Broard_Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Broard_Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Broard_Id })
+        </td>
+    </tr>
+}
+
+</table>

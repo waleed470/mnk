@@ -12,7 +12,7 @@ namespace Mnk.Models
         public int Gallery_Id { get; set; }
         [Required]
         public string Gallery_title { get; set; }
-        [Required]
+        
         public string Gallery_image { get; set; }
         [Required]
         public bool Gallery_status { get; set; }

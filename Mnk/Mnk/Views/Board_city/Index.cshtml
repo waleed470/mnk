@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Mnk.Models.Board_city>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor"> City Details </h3>
+    </div>
+    <div class="col-md-7 align-self-center">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">City</a></li>
+
+            <li class="breadcrumb-item active">City Details</li>
+        </ol>
+    </div>
+    <div class="">
+        <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive m-t-40">
+                        <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>City</th>
+                               
+                                    <th>City Status</th>
+                                    <th>City Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>City</th>
+
+                                    <th>City Status</th>
+                                    <th>City Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+
+
+
+
+                                        <td> @item.Board_City_name</td>
+                                      
+                                        <td> @item.Board_City_Status </td>
+                                        <td> @item.Board_City_Date</td>
+
+
+                                        <td class="actions">
+                                            <a href="~/Board_city/Edit?Id=@item.Board_City_Id" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                            <a href="~/Board_city/Delete?Id=@item.Board_City_Id" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>

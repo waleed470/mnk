@@ -49,7 +49,7 @@ namespace Mnk.Controllers
             db.SaveChanges();
         }
         //[HttpPost]
-        //public JsonResult Get_Services_data(int id)
+         //public JsonResult Get_Services_data(int id)
         //{
         //    var obj = db.Servicess.Where(m => m.Service_Id == id).ToList();
         //    return Json(obj, JsonRequestBehavior.AllowGet);
@@ -68,12 +68,7 @@ namespace Mnk.Controllers
 
              
 
-                Tuple<string,bool> tpl = new Tuple<string,bool>
-                (
-                qty,
-                status
-                
-                );
+                Tuple <string,bool> tpl = new Tuple <string,bool> (qty,status );
               
                 return Json(tpl, JsonRequestBehavior.AllowGet);
             }

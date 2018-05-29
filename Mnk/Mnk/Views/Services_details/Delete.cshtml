@@ -1,0 +1,73 @@
+﻿@model Mnk.Models.Services_details
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Services_details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Services.Service_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Services.Service_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Service_Detail_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Service_Detail_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Service_Detail_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Service_Detail_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Service_Detail_Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Service_Detail_Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.service_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.service_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.service_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.service_Date)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

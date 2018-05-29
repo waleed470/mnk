@@ -1,0 +1,140 @@
+﻿@model Mnk.Models.testo_nomia
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Css {
+
+    <link rel="stylesheet" href="~/content/admin_content/assets/plugins/dropify/dist/css/dropify.min.css">
+}
+
+
+
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">Add New Message</h3>
+    </div>
+    <div class="col-md-7 align-self-center">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Messages</a></li>
+
+            <li class="breadcrumb-item active">Add New Message</li>
+        </ol>
+    </div>
+    <div class="">
+        <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    @using (Html.BeginForm("Create", "testo_nomia", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <form class="floating-labels m-t-40">
+
+                            <div class="form-group m-b-40">
+                                <label for="input1">Name</label>
+                                <input type="text" name="Testo_nomia_name" class="form-control" id="input1">
+                                <span class="bar"></span>
+
+
+                            </div>
+
+                            <div class="form-group m-b-40">
+                                <label for="input1">Message</label>
+                                <input type="text" name="Testo_nomia_Massage" class="form-control" id="input1">
+                                <span class="bar"></span>
+
+
+                            </div>
+
+                            <div class="form-group m-b-40">
+
+                                <h4 class="card-title"> Image</h4>
+                                <label for="input-file-now"></label>
+                                <input type="file" name="doc" id="input-file-now" class="dropify" />
+                                <span class="bar"></span>
+
+
+                            </div>
+
+                            <p style="margin-top:50px;"></p>
+
+                            <button type="submit" name="Create" class="btn waves-effect waves-light btn-outline-primary">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@section Scripts {
+
+    <!-- jQuery file upload -->
+    <script src="~/content/admin_content/assets/plugins/dropify/dist/js/dropify.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        // Basic
+        $('.dropify').dropify();
+
+        // Translated
+        $('.dropify-fr').dropify({
+            messages: {
+                default: 'Glissez-déposez un fichier ici ou cliquez',
+                replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                remove: 'Supprimer',
+                error: 'Désolé, le fichier trop volumineux'
+            }
+        });
+
+        // Used events
+        var drEvent = $('#input-file-events').dropify();
+
+        drEvent.on('dropify.beforeClear', function(event, element) {
+            return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+        });
+
+        drEvent.on('dropify.afterClear', function(event, element) {
+            alert('File deleted');
+        });
+
+        drEvent.on('dropify.errors', function(event, element) {
+            console.log('Has Errors');
+        });
+
+        var drDestroy = $('#input-file-to-destroy').dropify();
+        drDestroy = drDestroy.data('dropify')
+        $('#toggleDropify').on('click', function(e) {
+            e.preventDefault();
+            if (drDestroy.isDropified()) {
+                drDestroy.destroy();
+            } else {
+                drDestroy.init();
+            }
+        })
+    });
+    </script>
+
+
+
+
+}

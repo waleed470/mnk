@@ -14,7 +14,7 @@ namespace Mnk.Models
         public string Team_member_Name { get; set; }
         [Required]
         public string Team_member_Designation { get; set; }
-        [Required]
+        
         public string Team_member_image { get; set; }
         [Required]
         public bool Team_member_status { get; set; }

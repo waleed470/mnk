@@ -1,0 +1,67 @@
+﻿@model Mnk.Models.Services_details
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Services_details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Services.Service_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Services.Service_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Service_Detail_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Service_Detail_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Service_Detail_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Service_Detail_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Service_Detail_Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Service_Detail_Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.service_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.service_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.service_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.service_Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Service_Detail_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

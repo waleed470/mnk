@@ -34,6 +34,7 @@
                 }
             });
         }
+        //details
         $scope.LoadGrid = function () {
             JsonCallParam("Admin_Services", "Get_Service_data");
             $scope.Grid = list;
@@ -72,7 +73,11 @@
             }
             else {
 
+                var pram = {
 
+                    'ServiceList': JSON.stringify($scope.ServiceList)
+
+                };
                 JsonCallParam("Admin_Services", "Update", pram);
             }
             $scope.LoadGrid();
@@ -168,7 +173,7 @@ app.controller('myCtrl', function($scope) {
                                         <th>Service Id</th>
                                         <th>Service Name</th>
                                         <th>Service Status</th>
-                                      
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -176,7 +181,7 @@ app.controller('myCtrl', function($scope) {
                                         <th>Service Id</th>
                                         <th>Service Name</th>
                                         <th>Service Status</th>
-                                      
+                                        <th>Action</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -184,7 +189,7 @@ app.controller('myCtrl', function($scope) {
 
                                         <td>{{item.Service_Id}} </td>
                                         <td>{{item.Service_Name}} </td>
-
+                                        <td>{{item.Service_status}} </td>
                                         <td><button type="submit" ng-click="Edit(item)">edit</button> </td>
                                     </tr>
                                 </tbody>

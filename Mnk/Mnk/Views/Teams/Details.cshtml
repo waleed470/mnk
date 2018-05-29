@@ -1,0 +1,59 @@
+﻿@model Mnk.Models.Team
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Team</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Team_member_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Team_member_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Team_member_Designation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Team_member_Designation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Team_member_image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Team_member_image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Team_member_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Team_member_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Team_member_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Team_member_date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Team_Member_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -79,6 +79,15 @@ namespace Mnk.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+
+        public string MobileNo { get; set; }
+
+        public string UserType { get; set; }
+
+        public string User_Adress { get; set; }
+
+        public bool Status { get; set; }
     }
 
     public class ResetPasswordViewModel

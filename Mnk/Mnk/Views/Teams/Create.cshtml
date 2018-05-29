@@ -1,0 +1,139 @@
+﻿@model Mnk.Models.Team
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Css {
+
+    <link rel="stylesheet" href="~/content/admin_content/assets/plugins/dropify/dist/css/dropify.min.css">
+}
+
+
+
+
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">Add New Member</h3>
+    </div>
+    <div class="col-md-7 align-self-center">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Team</a></li>
+
+            <li class="breadcrumb-item active">Add New Member</li>
+        </ol>
+    </div>
+    <div class="">
+        <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("Create", "Teams", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <form class="floating-labels m-t-40">
+                            <div class="form-group m-b-40">
+                                <label for="input1">Member Name</label>
+                                <input type="text"  value="" class="form-control"  name="Team_member_Name"   id="input1">
+                                <span class="bar"></span>
+                                
+                            </div>
+                            <div class="form-group m-b-40">
+                                <label for="input1">Member Designation</label>
+                                <input type="text" name="Team_member_Designation" value="" class="form-control" id="input1">
+                                <span class="bar"></span>
+                                
+                            </div>
+
+                            <div class="form-group m-b-40">
+                                <h4 class="card-title">Member Image</h4>
+                                <label for="input-file-now"></label>
+                                <input type="file" name="doc" id="input-file-now" class="dropify" />
+                                <span class="bar"></span>
+
+
+                            </div>
+                            <p style="margin-top:50px;"></p>
+
+                            <button type="submit" value="Create" class="btn waves-effect waves-light btn-outline-primary">Create</button>
+                        </form>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+    <!-- ============================================================== -->
+}
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+@section Scripts {
+<script src="~/content/admin_content/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <!-- jQuery file upload -->
+    <script src="~/content/admin_content/assets/plugins/dropify/dist/js/dropify.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        // Basic
+        $('.dropify').dropify();
+
+        // Translated
+        $('.dropify-fr').dropify({
+            messages: {
+                default: 'Glissez-déposez un fichier ici ou cliquez',
+                replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                remove: 'Supprimer',
+                error: 'Désolé, le fichier trop volumineux'
+            }
+        });
+
+        // Used events
+        var drEvent = $('#input-file-events').dropify();
+
+        drEvent.on('dropify.beforeClear', function(event, element) {
+            return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+        });
+
+        drEvent.on('dropify.afterClear', function(event, element) {
+            alert('File deleted');
+        });
+
+        drEvent.on('dropify.errors', function(event, element) {
+            console.log('Has Errors');
+        });
+
+        var drDestroy = $('#input-file-to-destroy').dropify();
+        drDestroy = drDestroy.data('dropify')
+        $('#toggleDropify').on('click', function(e) {
+            e.preventDefault();
+            if (drDestroy.isDropified()) {
+                drDestroy.destroy();
+            } else {
+                drDestroy.init();
+            }
+        })
+    });
+    </script>
+}

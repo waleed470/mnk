@@ -198,8 +198,19 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\adminhomeController.cs" />
     <Compile Include="Controllers\Admin_ServicesController.cs" />
+    <Compile Include="Controllers\BoardsController.cs" />
+    <Compile Include="Controllers\Board_AvailbalityController.cs" />
+    <Compile Include="Controllers\Board_cityController.cs" />
+    <Compile Include="Controllers\Board_LocationController.cs" />
+    <Compile Include="Controllers\Board_mediumController.cs" />
+    <Compile Include="Controllers\clientsController.cs" />
+    <Compile Include="Controllers\GalleriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Services_detailsController.cs" />
+    <Compile Include="Controllers\slidersController.cs" />
+    <Compile Include="Controllers\TeamsController.cs" />
+    <Compile Include="Controllers\testo_nomiaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -207,14 +218,83 @@
     <Compile Include="Migrations\201805031829009_table.Designer.cs">
       <DependentUpon>201805031829009_table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805081019242_new tables.cs" />
+    <Compile Include="Migrations\201805081019242_new tables.Designer.cs">
+      <DependentUpon>201805081019242_new tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805101055052_newentry.cs" />
+    <Compile Include="Migrations\201805101055052_newentry.Designer.cs">
+      <DependentUpon>201805101055052_newentry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805110625220_newentry1.cs" />
+    <Compile Include="Migrations\201805110625220_newentry1.Designer.cs">
+      <DependentUpon>201805110625220_newentry1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805140247447_newdata.cs" />
+    <Compile Include="Migrations\201805140247447_newdata.Designer.cs">
+      <DependentUpon>201805140247447_newdata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805140739184_newdata1.cs" />
+    <Compile Include="Migrations\201805140739184_newdata1.Designer.cs">
+      <DependentUpon>201805140739184_newdata1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805140756163_newdate2.cs" />
+    <Compile Include="Migrations\201805140756163_newdate2.Designer.cs">
+      <DependentUpon>201805140756163_newdate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805140834240_newdata3.cs" />
+    <Compile Include="Migrations\201805140834240_newdata3.Designer.cs">
+      <DependentUpon>201805140834240_newdata3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805170700245_newdata4.cs" />
+    <Compile Include="Migrations\201805170700245_newdata4.Designer.cs">
+      <DependentUpon>201805170700245_newdata4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805170755297_testing.cs" />
+    <Compile Include="Migrations\201805170755297_testing.Designer.cs">
+      <DependentUpon>201805170755297_testing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805170757207_changes in avaialbility table.cs" />
+    <Compile Include="Migrations\201805170757207_changes in avaialbility table.Designer.cs">
+      <DependentUpon>201805170757207_changes in avaialbility table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805170833591_newdtaa7.cs" />
+    <Compile Include="Migrations\201805170833591_newdtaa7.Designer.cs">
+      <DependentUpon>201805170833591_newdtaa7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805182019263_newdata5.cs" />
+    <Compile Include="Migrations\201805182019263_newdata5.Designer.cs">
+      <DependentUpon>201805182019263_newdata5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805192048495_newentry10.cs" />
+    <Compile Include="Migrations\201805192048495_newentry10.Designer.cs">
+      <DependentUpon>201805192048495_newentry10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805220421090_newentry12.cs" />
+    <Compile Include="Migrations\201805220421090_newentry12.Designer.cs">
+      <DependentUpon>201805220421090_newentry12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805281916281_new1.cs" />
+    <Compile Include="Migrations\201805281916281_new1.Designer.cs">
+      <DependentUpon>201805281916281_new1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Board.cs" />
+    <Compile Include="Models\Board_Availbality.cs" />
+    <Compile Include="Models\Board_city.cs" />
+    <Compile Include="Models\Board_Location.cs" />
+    <Compile Include="Models\Board_medium.cs" />
+    <Compile Include="Models\client.cs" />
+    <Compile Include="Models\Contact-us.cs" />
     <Compile Include="Models\Gallery.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Services.cs" />
+    <Compile Include="Models\Services_details.cs" />
     <Compile Include="Models\slider.cs" />
     <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\testo_nomia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -281,6 +361,61 @@
     <Content Include="Views\adminhome\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin_Services\Index.cshtml" />
+    <Content Include="Views\sliders\Create.cshtml" />
+    <Content Include="Views\sliders\Delete.cshtml" />
+    <Content Include="Views\sliders\Details.cshtml" />
+    <Content Include="Views\sliders\Edit.cshtml" />
+    <Content Include="Views\sliders\Index.cshtml" />
+    <Content Include="Views\Galleries\Create.cshtml" />
+    <Content Include="Views\Galleries\Delete.cshtml" />
+    <Content Include="Views\Galleries\Details.cshtml" />
+    <Content Include="Views\Galleries\Edit.cshtml" />
+    <Content Include="Views\Galleries\Index.cshtml" />
+    <Content Include="Views\Teams\Create.cshtml" />
+    <Content Include="Views\Teams\Delete.cshtml" />
+    <Content Include="Views\Teams\Details.cshtml" />
+    <Content Include="Views\Teams\Edit.cshtml" />
+    <Content Include="Views\Teams\Index.cshtml" />
+    <Content Include="Views\Board_Location\Create.cshtml" />
+    <Content Include="Views\Board_Location\Delete.cshtml" />
+    <Content Include="Views\Board_Location\Details.cshtml" />
+    <Content Include="Views\Board_Location\Edit.cshtml" />
+    <Content Include="Views\Board_Location\Index.cshtml" />
+    <Content Include="Views\testo_nomia\Create.cshtml" />
+    <Content Include="Views\testo_nomia\Delete.cshtml" />
+    <Content Include="Views\testo_nomia\Details.cshtml" />
+    <Content Include="Views\testo_nomia\Edit.cshtml" />
+    <Content Include="Views\testo_nomia\Index.cshtml" />
+    <Content Include="Views\Board_city\Create.cshtml" />
+    <Content Include="Views\Board_city\Delete.cshtml" />
+    <Content Include="Views\Board_city\Details.cshtml" />
+    <Content Include="Views\Board_city\Edit.cshtml" />
+    <Content Include="Views\Board_city\Index.cshtml" />
+    <Content Include="Views\Board_medium\Create.cshtml" />
+    <Content Include="Views\Board_medium\Delete.cshtml" />
+    <Content Include="Views\Board_medium\Details.cshtml" />
+    <Content Include="Views\Board_medium\Edit.cshtml" />
+    <Content Include="Views\Board_medium\Index.cshtml" />
+    <Content Include="Views\clients\Create.cshtml" />
+    <Content Include="Views\clients\Delete.cshtml" />
+    <Content Include="Views\clients\Details.cshtml" />
+    <Content Include="Views\clients\Edit.cshtml" />
+    <Content Include="Views\clients\Index.cshtml" />
+    <Content Include="Views\Services_details\Create.cshtml" />
+    <Content Include="Views\Services_details\Delete.cshtml" />
+    <Content Include="Views\Services_details\Details.cshtml" />
+    <Content Include="Views\Services_details\Edit.cshtml" />
+    <Content Include="Views\Services_details\Index.cshtml" />
+    <Content Include="Views\Boards\Create.cshtml" />
+    <Content Include="Views\Boards\Delete.cshtml" />
+    <Content Include="Views\Boards\Details.cshtml" />
+    <Content Include="Views\Boards\Edit.cshtml" />
+    <Content Include="Views\Boards\Index.cshtml" />
+    <Content Include="Views\Board_Availbality\Create.cshtml" />
+    <Content Include="Views\Board_Availbality\Delete.cshtml" />
+    <Content Include="Views\Board_Availbality\Details.cshtml" />
+    <Content Include="Views\Board_Availbality\Edit.cshtml" />
+    <Content Include="Views\Board_Availbality\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -292,6 +427,8 @@
     <Folder Include="Content\admin_content\js\" />
     <Folder Include="Content\admin_content\lib\" />
     <Folder Include="Content\admin_content\scss\" />
+    <Folder Include="Content\Images\" />
+    <Folder Include="Views\Board\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -304,6 +441,51 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805031829009_table.resx">
       <DependentUpon>201805031829009_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805081019242_new tables.resx">
+      <DependentUpon>201805081019242_new tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805101055052_newentry.resx">
+      <DependentUpon>201805101055052_newentry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805110625220_newentry1.resx">
+      <DependentUpon>201805110625220_newentry1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805140247447_newdata.resx">
+      <DependentUpon>201805140247447_newdata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805140739184_newdata1.resx">
+      <DependentUpon>201805140739184_newdata1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805140756163_newdate2.resx">
+      <DependentUpon>201805140756163_newdate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805140834240_newdata3.resx">
+      <DependentUpon>201805140834240_newdata3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805170700245_newdata4.resx">
+      <DependentUpon>201805170700245_newdata4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805170755297_testing.resx">
+      <DependentUpon>201805170755297_testing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805170757207_changes in avaialbility table.resx">
+      <DependentUpon>201805170757207_changes in avaialbility table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805170833591_newdtaa7.resx">
+      <DependentUpon>201805170833591_newdtaa7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805182019263_newdata5.resx">
+      <DependentUpon>201805182019263_newdata5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805192048495_newentry10.resx">
+      <DependentUpon>201805192048495_newentry10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805220421090_newentry12.resx">
+      <DependentUpon>201805220421090_newentry12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805281916281_new1.resx">
+      <DependentUpon>201805281916281_new1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

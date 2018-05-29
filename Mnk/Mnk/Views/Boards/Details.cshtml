@@ -1,0 +1,91 @@
+﻿@model Mnk.Models.Board
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Board</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Board_Availbality.Availability_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Board_Availbality.Availability_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Board_city.Board_City_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Board_city.Board_City_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Board_Location.Board_location_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Board_Location.Board_location_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Board_medium.Board_Medium_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Board_medium.Board_Medium_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Broard_Site_code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Broard_Site_code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Broard_Traffic_from)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Broard_Traffic_from)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Broard_Traffic_to)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Broard_Traffic_to)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Broard_Width)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Broard_Width)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Broard_Height)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Broard_Height)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Broard_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

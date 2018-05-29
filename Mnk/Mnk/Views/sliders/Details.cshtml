@@ -1,0 +1,51 @@
+﻿@model Mnk.Models.slider
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>slider</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Slider_Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Slider_Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Slider_Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Slider_Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Slider_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Slider_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Slider_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Slider_Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Slider_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

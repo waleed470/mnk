@@ -1,0 +1,61 @@
+﻿@model Mnk.Models.Board_Location
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">Add New Location</h3>
+    </div>
+    <div class="col-md-7 align-self-center">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Board Location</a></li>
+
+            <li class="breadcrumb-item active">Add New Location</li>
+        </ol>
+    </div>
+    <div class="">
+        <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    @using (Html.BeginForm("Create", "Board_Location", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <form class="floating-labels m-t-40">
+                            <div class="form-group m-b-40">
+                                <label for="input1"> Location </label>
+                                <input type="text" value="" class="form-control" name="Board_location_name" id="input1">
+                                <span class="bar"></span>
+
+                            </div>
+                            
+                            <p style="margin-top:50px;"></p>
+
+                            <button type="submit" name="Create" class="btn waves-effect waves-light btn-outline-primary">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

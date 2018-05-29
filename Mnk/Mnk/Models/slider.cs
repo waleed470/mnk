@@ -12,7 +12,7 @@ namespace Mnk.Models
         public int Slider_Id { get; set; }
         [Required]
         public string Slider_Title { get; set; }
-        [Required]
+      
         public string Slider_Image { get; set; }
         [Required]
         public bool Slider_Status { get; set; }

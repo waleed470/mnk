@@ -1,0 +1,97 @@
+﻿@model Mnk.Models.Board
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Board</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Board_Availbality.Availability_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Board_Availbality.Availability_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Board_city.Board_City_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Board_city.Board_City_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Board_Location.Board_location_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Board_Location.Board_location_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Board_medium.Board_Medium_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Board_medium.Board_Medium_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Broard_Site_code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Broard_Site_code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Broard_Traffic_from)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Broard_Traffic_from)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Broard_Traffic_to)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Broard_Traffic_to)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Broard_Width)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Broard_Width)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Broard_Height)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Broard_Height)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
