@@ -50,18 +50,19 @@ namespace Mnk.Controllers
         {
             if (ModelState.IsValid)
             {
-                var toDate = board_Availbality.Availability_to.Date;
-                var fromDate = board_Availbality.Availability_from.Date;
+                //var toDate = board_Availbality.Availability_to.Date;
+                //var fromDate = board_Availbality.Availability_from.Date;
 
-                var toMonth = board_Availbality.Availability_to.Month;
-                var fromMonth = board_Availbality.Availability_from.Month;
+                //var toMonth = board_Availbality.Availability_to.Month;
+                //var fromMonth = board_Availbality.Availability_from.Month;
 
-                if (toDate>fromDate && toMonth > fromMonth)
-                {
+                //if (toDate>fromDate && toMonth > fromMonth)
+                //{
 
-                }
+                //}
+                //board_Availbality.Availability_Date = DateTime.Now;
+                //board_Availbality.Availability_from = DateTime.Now;
                 board_Availbality.Availability_Date = DateTime.Now;
-                board_Availbality.Availability_from = DateTime.Now;
                 db.Boards_Availability.Add(board_Availbality);
                 db.SaveChanges();
                 return RedirectToAction("Index");

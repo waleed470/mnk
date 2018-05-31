@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Mnk.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Mnk.Controllers
 {
@@ -17,7 +18,7 @@ namespace Mnk.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        ApplicationDbContext context = new ApplicationDbContext();
         public AccountController()
         {
         }
@@ -139,6 +140,8 @@ namespace Mnk.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+             var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+            ViewBag.Roles = list;
             return View();
         }
 
@@ -151,8 +154,18 @@ namespace Mnk.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email,  MobileNo=model.MobileNo   };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+
+                var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+                var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
+                var userManager = new UserManager<ApplicationUser>(userStore);
+
+
+
                 if (result.Succeeded)
                 {
                     

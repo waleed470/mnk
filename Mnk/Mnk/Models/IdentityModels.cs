@@ -11,6 +11,7 @@ namespace Mnk.Models
     {
         public override string Email { get; set; }
         public string MobileNo { get; set; }
+        public string UserName { get; set; }
         public string UserType { get; set; }
         public string User_Adress { get; set; }
         public bool Status { get; set; }
