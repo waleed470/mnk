@@ -5,9 +5,21 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @section Css {
-
     <link href="~/content/admin_content/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/content/admin_content/assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
+    <!-- Page plugins css -->
+    <link href="~/content/admin_content/assets/plugins/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet">
+    <!-- Color picker plugins css -->
+    <link href="~/content/admin_content/assets/plugins/jquery-asColorPicker-master/css/asColorPicker.css" rel="stylesheet">
+    <!-- Date picker plugins css -->
+    <link href="~/content/admin_content/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+    <!-- Daterange picker plugins css -->
+    <link href="~/content/admin_content/assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+    <link href="~/content/admin_content/assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/content/admin_content/css/style.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="~/content/admin_content/css/colors/blue.css" id="theme" rel="stylesheet">
 
 }
 
@@ -56,13 +68,17 @@
 
 
 
-
-                            @*<div class="form-group m-t-20">*@
-                            <div class="form-group  m-t-40">
-                                <label class="m-t-20"> Board Availbility To </label>
-                                <input type="text" class="form-control" name="Availability_to" placeholder="" id="mdate">
-                                <label class="m-t-40"> Board Availbility from </label>
-                                <input type="text" class="form-control" name="Availability_from " placeholder="" id="mdate1">
+                            <div class="example">
+                                <h5 class="box-title m-t-30">Availbility Date</h5>
+                                
+                                <div class="input-daterange input-group" id="date-range">
+                                    
+                                    <input type="text" class="form-control" name="Availability_to" />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-info b-0 text-white">TO</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="Availability_from" />
+                                </div>
                             </div>
 
 
@@ -121,19 +137,79 @@
 
 
     <script>
+        $('#mdate').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
+        $('#timepicker').bootstrapMaterialDatePicker({ format: 'HH:mm', time: true, date: false });
+        $('#date-format').bootstrapMaterialDatePicker({ format: 'dddd DD MMMM YYYY - HH:mm' });
 
-    $('#mdate').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
-    $('#timepicker').bootstrapMaterialDatePicker({ format: 'HH:mm', time: true, date: false });
-    $('#date-format').bootstrapMaterialDatePicker({ format: 'dddd DD MMMM YYYY - HH:mm' });
-
-    $('#min-date').bootstrapMaterialDatePicker({ format: 'DD/MM/YYYY HH:mm', minDate: new Date() });
-    // Clock pickers
-    $('#mdate1').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
-    $('#timepicker').bootstrapMaterialDatePicker({ format: 'HH:mm', time: true, date: false });
-    $('#date-format').bootstrapMaterialDatePicker({ format: 'dddd DD MMMM YYYY - HH:mm' });
-
-    $('#min-date1').bootstrapMaterialDatePicker({ format: 'DD/MM/YYYY HH:mm', minDate: new Date() });
-    // Clock pickers
+        $('#min-date').bootstrapMaterialDatePicker({ format: 'DD/MM/YYYY HH:mm', minDate: new Date() });
+        // Clock pickers
+        $('#single-input').clockpicker({
+            placement: 'bottom',
+            align: 'left',
+            autoclose: true,
+            'default': 'now'
+        });
+        $('.clockpicker').clockpicker({
+            donetext: 'Done',
+        }).find('input').change(function () {
+            console.log(this.value);
+        });
+        $('#check-minutes').click(function (e) {
+            // Have to stop propagation here
+            e.stopPropagation();
+            input.clockpicker('show').clockpicker('toggleView', 'minutes');
+        });
+        if (/mobile/i.test(navigator.userAgent)) {
+            $('input').prop('readOnly', true);
+        }
+        // Colorpicker
+        $(".colorpicker").asColorPicker();
+        $(".complex-colorpicker").asColorPicker({
+            mode: 'complex'
+        });
+        $(".gradient-colorpicker").asColorPicker({
+            mode: 'gradient'
+        });
+        // Date Picker
+        jQuery('.mydatepicker, #datepicker').datepicker();
+        jQuery('#datepicker-autoclose').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+        jQuery('#date-range').datepicker({
+            toggleActive: true
+        });
+        jQuery('#datepicker-inline').datepicker({
+            todayHighlight: true
+        });
+        // Daterange picker
+        $('.input-daterange-datepicker').daterangepicker({
+            buttonClasses: ['btn', 'btn-sm'],
+            applyClass: 'btn-danger',
+            cancelClass: 'btn-inverse'
+        });
+        $('.input-daterange-timepicker').daterangepicker({
+            timePicker: true,
+            format: 'MM/DD/YYYY h:mm A',
+            timePickerIncrement: 30,
+            timePicker12Hour: true,
+            timePickerSeconds: false,
+            buttonClasses: ['btn', 'btn-sm'],
+            applyClass: 'btn-danger',
+            cancelClass: 'btn-inverse'
+        });
+        $('.input-limit-datepicker').daterangepicker({
+            format: 'MM/DD/YYYY',
+            minDate: '06/01/2015',
+            maxDate: '06/30/2015',
+            buttonClasses: ['btn', 'btn-sm'],
+            applyClass: 'btn-danger',
+            cancelClass: 'btn-inverse',
+            dateLimit: {
+                days: 6
+            }
+        });
+   
 
     </script>
 
