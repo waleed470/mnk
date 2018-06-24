@@ -150,11 +150,11 @@ namespace Mnk.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model ,  string RoleName)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email,  MobileNo=model.MobileNo   };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email ,  MobileNo=model.MobileNo , Status= true ,  UserType= RoleName, User_Adress=model.User_Adress   };
                 var result = await UserManager.CreateAsync(user, model.Password);
 
 
@@ -170,7 +170,9 @@ namespace Mnk.Controllers
                 {
                     
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await this.UserManager.AddToRoleAsync(user.Id, RoleName);
+
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -183,6 +185,8 @@ namespace Mnk.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+            ViewBag.Roles = list;
             return View(model);
         }
 

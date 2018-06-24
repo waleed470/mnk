@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Mnk.Models;
+using System.IO;
+using System.Web.Hosting;
 
 namespace Mnk.Controllers
 {
@@ -17,8 +19,7 @@ namespace Mnk.Controllers
         // GET: Boards
         public ActionResult Index()
         {
-            var boards = db.Boards.Include(b => b.Board_Availbality).Include(b => b.Board_city).Include(b => b.Board_Location).Include(b => b.Board_medium);
-            return View(boards.ToList());
+               return View(db.Boards.ToList());
         }
 
         // GET: Boards/Details/5
@@ -39,8 +40,9 @@ namespace Mnk.Controllers
         // GET: Boards/Create
         public ActionResult Create()
         {
-            ViewBag.Availability_id = new SelectList(db.Boards_Availability, "Availability_id", "Availability_name");
+            ////ViewBag.Availability_id = new SelectList(db.Boards_Availability, "Availability_id", "Availability_id");
             ViewBag.Board_City_Id = new SelectList(db.Board_city, "Board_City_Id", "Board_City_name");
+            ////ViewBag.Board_image_id = new SelectList(db.Board_image, "Board_image_id", "image");
             ViewBag.Board_Location_Id = new SelectList(db.Boards_Locations, "Board_Location_Id", "Board_location_name");
             ViewBag.Board_Medium_Id = new SelectList(db.Board_medium, "Board_Medium_Id", "Board_Medium_name");
             return View();
@@ -51,17 +53,46 @@ namespace Mnk.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Broard_Id,Broard_Site_code,Broard_Traffic_from,Broard_Traffic_to,Broard_Width,Broard_Height,Board_Medium_Id,Board_City_Id,Board_Location_Id,Availability_id")] Board board)
+        public ActionResult Create( Board board, Board_Availbality Board_Availbality, Board_image Board_image,  HttpPostedFileBase []doc)
         {
+            
             if (ModelState.IsValid)
             {
+                board.Board_date = DateTime.Now;
                 db.Boards.Add(board);
                 db.SaveChanges();
+                var varid = db.Boards.Max(m => m.Broard_Id);
+                foreach (var item in doc)
+                {
+                    var filename = Path.GetFileName(item.FileName);
+                    var extension = Path.GetExtension(filename).ToLower();
+                    if (extension == ".jpg" || extension == ".png")
+                    {
+                        var path = HostingEnvironment.MapPath(Path.Combine("~/Content/Images/", filename));
+                        item.SaveAs(path);
+                        Board_image.image = "~/Content/Images/" + filename;
+                        Board_image.Board_id  =  varid;
+                        db.Board_image.Add(Board_image);
+                        db.SaveChanges();
+
+                    }
+                }
+                Board_Availbality.Availability_status = true;
+                Board_Availbality.Board_id = varid;
+
+                db.Boards_Availability.Add(Board_Availbality);
+
+
+
+                db.SaveChanges();
+
+
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Availability_id = new SelectList(db.Boards_Availability, "Availability_id", "Availability_name", board.Availability_id);
+            ////ViewBag.Availability_id = new SelectList(db.Boards_Availability, "Availability_id", "Availability_id", board.Availability_id);
             ViewBag.Board_City_Id = new SelectList(db.Board_city, "Board_City_Id", "Board_City_name", board.Board_City_Id);
+            ////ViewBag.Board_image_id = new SelectList(db.Board_image, "Board_image_id", "image", board.Board_image_id);
             ViewBag.Board_Location_Id = new SelectList(db.Boards_Locations, "Board_Location_Id", "Board_location_name", board.Board_Location_Id);
             ViewBag.Board_Medium_Id = new SelectList(db.Board_medium, "Board_Medium_Id", "Board_Medium_name", board.Board_Medium_Id);
             return View(board);
@@ -79,19 +110,18 @@ namespace Mnk.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Availability_id = new SelectList(db.Boards_Availability, "Availability_id", "Availability_name", board.Availability_id);
+            
             ViewBag.Board_City_Id = new SelectList(db.Board_city, "Board_City_Id", "Board_City_name", board.Board_City_Id);
+            
             ViewBag.Board_Location_Id = new SelectList(db.Boards_Locations, "Board_Location_Id", "Board_location_name", board.Board_Location_Id);
             ViewBag.Board_Medium_Id = new SelectList(db.Board_medium, "Board_Medium_Id", "Board_Medium_name", board.Board_Medium_Id);
             return View(board);
         }
 
-        // POST: Boards/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Broard_Id,Broard_Site_code,Broard_Traffic_from,Broard_Traffic_to,Broard_Width,Broard_Height,Board_Medium_Id,Board_City_Id,Board_Location_Id,Availability_id")] Board board)
+        public ActionResult Edit( Board board)
         {
             if (ModelState.IsValid)
             {
@@ -99,8 +129,9 @@ namespace Mnk.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Availability_id = new SelectList(db.Boards_Availability, "Availability_id", "Availability_name", board.Availability_id);
+            
             ViewBag.Board_City_Id = new SelectList(db.Board_city, "Board_City_Id", "Board_City_name", board.Board_City_Id);
+            
             ViewBag.Board_Location_Id = new SelectList(db.Boards_Locations, "Board_Location_Id", "Board_location_name", board.Board_Location_Id);
             ViewBag.Board_Medium_Id = new SelectList(db.Board_medium, "Board_Medium_Id", "Board_Medium_name", board.Board_Medium_Id);
             return View(board);

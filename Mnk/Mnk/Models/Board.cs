@@ -20,11 +20,12 @@ namespace Mnk.Models
         public int Broard_Width { get; set; }
         [Required]
         public int Broard_Height { get; set; }
-        
-    
+        public DateTime Board_date { get; set; }
+
+
 
         public int Board_Medium_Id { get; set; }
-        public virtual  Board_medium Board_medium { get; set; }
+        public virtual Board_medium Board_medium { get; set; }
 
 
         public int Board_City_Id { get; set; }
@@ -34,9 +35,6 @@ namespace Mnk.Models
         public int Board_Location_Id { get; set; }
         public virtual Board_Location Board_Location { get; set; }
 
-
-        public int Availability_id { get; set; }
-        public virtual Board_Availbality Board_Availbality { get; set; }
 
 
 

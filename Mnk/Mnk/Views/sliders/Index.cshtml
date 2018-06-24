@@ -10,6 +10,15 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
+@section Css {
+    <link href="~/content/admin_content/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Popup CSS -->
+    <link href="~/content/admin_content/assets/plugins/Magnific-Popup-master/dist/magnific-popup.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/content/admin_content/css/style.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="~/content/admin_content/css/colors/blue.css" id="theme" rel="stylesheet">
+    }
 
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
@@ -66,7 +75,9 @@
 
 
                                     <td> @item.Slider_Title</td>
-                                    <td> <img height="100" width="100" src="@Url.Content(item.Slider_Image)" alt=""> </td>
+                                    <td><a class="image-popup-no-margins" href="@Url.Content(item.Slider_Image)">
+                                        <img  src="@Url.Content(item.Slider_Image)" alt="image" class="img-responsive" />  </a>
+                                     </td>
                                     <td> @item.Slider_Status </td>
                                     <td> @item.Slider_Date</td>
 
@@ -103,6 +114,25 @@
     <script src="~/content/admin_content/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
     <script src="~/content/admin_content/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
     <!-- end - This is for export functionality only -->
+<script src="~/content/admin_content/assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="~/content/admin_content/assets/plugins/bootstrap/js/popper.min.js"></script>
+<script src="~/content/admin_content/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="~/content/admin_content/js/jquery.slimscroll.js"></script>
+<!--Wave Effects -->
+<script src="~/content/admin_content/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="/~/content/admin_content/js/sidebarmenu.js"></script>
+<!--stickey kit -->
+<script src="~/content/admin_content/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+<script src="~/content/admin_content/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+<!--Custom JavaScript -->
+<script src="~/content/admin_content/js/custom.min.js"></script>
+<!-- Magnific popup JavaScript -->
+<script src="~/content/admin_content/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
+<script src="~/content/admin_content/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup-init.js"></script>
+
     <script>
     $(document).ready(function() {
         $('#myTable').DataTable();

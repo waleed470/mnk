@@ -74,9 +74,9 @@
 
                             <div class="form-group m-b-40">
                                 <label for="input6">Member Status</label>
-                                <select class="form-control" name="Slider_Status" value="@(Model.Team_member_status)">
-                                    <option value="true">Active</option>
-                                    <option value="false">InActive</option>
+                                <select class="form-control" name="Team_member_status" >
+                                    <option value="true" @(true == Model.Team_member_status ? "selected='selected'" : "")>Active</option>
+                                    <option value="false" @(false == Model.Team_member_status ? "selected='selected'" : "")>InActive</option>
                                 </select><span class="bar"></span>
                                 
                             </div>

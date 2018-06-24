@@ -51,7 +51,7 @@
             //$scope.ServiceList = list;
             $scope.ServiceList.Service_Name = list.Item1;
             $scope.ServiceList.Service_status = list.Item2;
-            alert($scope.ServiceList.Service_status);
+            //alert($scope.ServiceList.Service_status);
             //console.log($scope.ServiceList.Service_Name);
             
 
@@ -190,7 +190,7 @@ app.controller('myCtrl', function($scope) {
                                         <td>{{item.Service_Id}} </td>
                                         <td>{{item.Service_Name}} </td>
                                         <td>{{item.Service_status}} </td>
-                                        <td><button type="submit" ng-click="Edit(item)">edit</button> </td>
+                                        <td><button type="submit" ng-click="Edit(item)">Edit</button> </td>
                                     </tr>
                                 </tbody>
                             </table>

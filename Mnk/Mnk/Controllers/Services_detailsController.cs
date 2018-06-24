@@ -96,15 +96,36 @@ namespace Mnk.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Service_Detail_Id,Service_Detail_Name,Service_Detail_Description,Service_Detail_Image,service_Status,service_Date,Service_Id")] Services_details services_details)
+        public ActionResult Edit( Services_details services_details , HttpPostedFileBase doc)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(services_details).State = EntityState.Modified;
+                Services_details Services_details_update = db.Services_details.Find(services_details.Service_Detail_Id);
+                Services_details_update.Service_Detail_Name = services_details.Service_Detail_Name;
+                Services_details_update.Service_Detail_Description = services_details.Service_Detail_Description;
+                Services_details_update.service_Status = services_details.service_Status;
+                Services_details_update.Service_Id = services_details.Service_Id;
+
+                if (doc != null)
+                {
+                    var filename = Path.GetFileName(doc.FileName);
+                    var extension = Path.GetExtension(filename).ToLower();
+                    if (extension == ".jpg" || extension == ".png")
+                    {
+                        var path = HostingEnvironment.MapPath(Path.Combine("~/Content/Images/", filename));
+                        doc.SaveAs(path);
+                        Services_details_update.Service_Detail_Image= "~/Content/Images/" + filename;
+
+                    }
+                }
+
+
+                services_details.service_Date = DateTime.Now;
+
+                db.Entry(Services_details_update).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Service_Id = new SelectList(db.Servicess, "Service_Id", "Service_Name", services_details.Service_Id);
             return View(services_details);
         }
 

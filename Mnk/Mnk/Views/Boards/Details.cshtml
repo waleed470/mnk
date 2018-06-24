@@ -1,91 +1,83 @@
 ﻿@model Mnk.Models.Board
+    @using Mnk.Models
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ApplicationDbContext db = new ApplicationDbContext();
 }
 
-<h2>Details</h2>
+@section Css{
 
-<div>
-    <h4>Board</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Board_Availbality.Availability_name)
-        </dt>
+    <link href="~/content/admin_content/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Popup CSS -->
+    <link href="~/content/admin_content/assets/plugins/Magnific-Popup-master/dist/magnific-popup.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/content/admin_content/css/style.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="~/content/admin_content/css/colors/blue.css" id="theme" rel="stylesheet">
 
-        <dd>
-            @Html.DisplayFor(model => model.Board_Availbality.Availability_name)
-        </dd>
+}
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Board_city.Board_City_name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Board_city.Board_City_name)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Board_Location.Board_location_name)
-        </dt>
+<h2> Board Images </h2>
+<div class="row el-element-overlay">
+    @foreach (var item1 in db.Board_image.Where(m => m.Board_id == Model.Broard_Id))
+    {
 
-        <dd>
-            @Html.DisplayFor(model => model.Board_Location.Board_location_name)
-        </dd>
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="el-card-item">
+                    <div class="el-card-avatar el-overlay-1">
+                        <img height="200" width="200" src="@Url.Content(item1.image)" alt="user" />
+                        <div class="el-overlay">
+                            <ul class="el-info">
+                                <li><a class="btn default btn-outline image-popup-vertical-fit" href="@Url.Content(item1.image)"><i class="icon-magnifier"></i></a></li>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Board_medium.Board_Medium_name)
-        </dt>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="el-card-content">
 
-        <dd>
-            @Html.DisplayFor(model => model.Board_medium.Board_Medium_name)
-        </dd>
+                        <br />
+                    </div>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Broard_Site_code)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Broard_Site_code)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Broard_Traffic_from)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Broard_Traffic_from)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Broard_Traffic_to)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Broard_Traffic_to)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Broard_Width)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Broard_Width)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Broard_Height)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Broard_Height)
-        </dd>
-
-    </dl>
+            </div>
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Broard_Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Broard_Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+
+    @section Scripts {
+
+        <script src="~/content/admin_content/assets/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap tether Core JavaScript -->
+        <script src="~/content/admin_content/assets/plugins/bootstrap/js/popper.min.js"></script>
+        <script src="~/content/admin_content/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <!-- slimscrollbar scrollbar JavaScript -->
+        <script src="~/content/admin_content/js/jquery.slimscroll.js"></script>
+        <!--Wave Effects -->
+        <script src="~/content/admin_content/js/waves.js"></script>
+        <!--Menu sidebar -->
+        <script src="~/content/admin_content/js/sidebarmenu.js"></script>
+        <!--stickey kit -->
+        <script src="~/content/admin_content/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+        <script src="~/content/admin_content/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+        <!--Custom JavaScript -->
+        <script src="~/content/admin_content/js/custom.min.js"></script>
+        <!-- Magnific popup JavaScript -->
+        <script src="~/content/admin_content/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
+        <script src="~/content/admin_content/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup-init.js"></script>
+        <!-- ============================================================== -->
+        <!-- Style switcher -->
+        <!-- ============================================================== -->
+        <script src="~/content/admin_content/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+
+
+    }

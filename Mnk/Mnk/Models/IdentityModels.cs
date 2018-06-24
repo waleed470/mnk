@@ -57,5 +57,7 @@ namespace Mnk.Models
         public System.Data.Entity.DbSet<Mnk.Models.client> clients { get; set; }
 
         public System.Data.Entity.DbSet<Mnk.Models.Services_details> Services_details { get; set; }
+
+        public System.Data.Entity.DbSet<Mnk.Models.Board_image> Board_image { get; set; }
     }
 }

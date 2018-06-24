@@ -1,82 +1,289 @@
 ﻿@model IEnumerable<Mnk.Models.Board>
+@using Mnk.Models
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ApplicationDbContext db = new ApplicationDbContext();
 }
 
-<h2>Index</h2>
-testring
+@section Css   {
+
+<link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+<link href='~/content/admin_content/board_gallery/dist/simplelightbox.min.css' rel='stylesheet' type='text/css'>
+<link href='~/content/admin_content/board_gallery/demo.css' rel='stylesheet' type='text/css'>
+
+
+    }
+
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Board_Availbality.Availability_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Board_city.Board_City_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Board_Location.Board_location_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Board_medium.Board_Medium_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Broard_Site_code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Broard_Traffic_from)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Broard_Traffic_to)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Broard_Width)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Broard_Height)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Board_Availbality.Availability_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Board_city.Board_City_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Board_Location.Board_location_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Board_medium.Board_Medium_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Broard_Site_code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Broard_Traffic_from)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Broard_Traffic_to)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Broard_Width)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Broard_Height)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Broard_Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Broard_Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Broard_Id })
-        </td>
-    </tr>
+
+
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor"> Board Details </h3>
+    </div>
+    <div class="col-md-7 align-self-center">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Board</a></li>
+
+            <li class="breadcrumb-item active">Board Details</li>
+        </ol>
+    </div>
+    <div class="">
+        <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive m-t-40">
+                        <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Site Code</th>
+                                    <th>Traffic To</th>
+                                    <th>Traffic From</th>
+                                    <th> Height </th>
+                                    <th> Width </th>
+                                    <th> Board Image </th>
+                                    <th> Medium </th>
+                                    <th> Location </th>
+                                    <th> City </th>
+                                    <th> Availbility To </th>
+                                    <th> Availbility From </th>
+                                    <th> Board Date </th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Site Code</th>
+                                    <th>Traffic To</th>
+                                    <th>Traffic From</th>
+                                    <th> Height </th>
+                                    <th> Width </th>
+                                    <th> Board Image </th>
+                                    <th> Medium </th>
+                                    <th> Location </th>
+                                    <th> City </th>
+                                    <th> Availbility To </th>
+                                    <th> Availbility From </th>
+                                    <th> Board Date </th>
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    var count = 0;
+                                    <tr>
+
+
+
+
+                                        <td> @item.Broard_Site_code</td>
+                                        <td> @item.Broard_Traffic_to</td>
+                                        <td> @item.Broard_Traffic_from</td>
+                                        <td> @item.Broard_Height</td>
+                                        <td> @item.Broard_Width</td>
+                                        
+                                        <td> @foreach (var item1 in db.Board_image.Where(m => m.Board_id == item.Broard_Id))
+                                        {
+                                            
+                                                <div class="gallery">
+                                                <a href="@Url.Content(item1.image)" class="big">
+                                                @if (count < 1) {
+                                                count++; 
+                                                <img height="100" width="100" src="@Url.Content(item1.image)" alt="" title="Beautiful Image" />
+                                                <a href="~/Boards/Details?Id=@item.Broard_Id"> <button type="submit" class="btn waves-effect waves-light btn-outline-primary">View </button> </a>
+                                                }
+                                                </a>    
+                                                </div> 
+
+
+
+                                        }
+
+
+
+
+                                        </td>
+                                        <td> @item.Board_medium.Board_Medium_name </td>
+                                        <td> @item.Board_Location.Board_location_name</td>
+                                        <td> @item.Board_city.Board_City_name</td>
+                                        @foreach (var item2 in db.Boards_Availability.Where(m => m.Board_id == item.Broard_Id && m.Availability_status==true))
+                                        {
+
+                                            <td> @item2.Availability_to</td>
+                                            <td> @item2.Availability_from</td>
+                                        }
+
+                                        <td> @item.Board_date</td>
+
+
+                                        <td class="actions">
+                                            <a href="~/Boards/Edit?Id=@item.Broard_Id" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                            <a href="~/Boards/Delete?Id=@item.Broard_Id" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+@section Scripts {
+
+<script src="~/content/admin_content/assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="~/content/admin_content/assets/plugins/bootstrap/js/popper.min.js"></script>
+<script src="~/content/admin_content/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="~/content/admin_content/js/jquery.slimscroll.js"></script>
+<!--Wave Effects -->
+<script src="~/content/admin_content/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="~/content/admin_content/js/sidebarmenu.js"></script>
+<!--stickey kit -->
+<script src="~/content/admin_content/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+<script src="~/content/admin_content/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+
+
+
+    <script src="~/content/admin_content/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="~/content/admin_content/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="~/content/admin_content/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="~/content/admin_content/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="~/content/admin_content/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="~/content/admin_content/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="~/content/admin_content/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="~/content/admin_content/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <!-- end - This is for export functionality only -->
+    <script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+        $(document).ready(function() {
+            var table = $('#example').DataTable({
+                "columnDefs": [{
+                    "visible": false,
+                    "targets": 2
+                }],
+                "order": [
+                    [2, 'asc']
+                ],
+                "displayLength": 25,
+                "drawCallback": function(settings) {
+                    var api = this.api();
+                    var rows = api.rows({
+                        page: 'current'
+                    }).nodes();
+                    var last = null;
+                    api.column(2, {
+                        page: 'current'
+                    }).data().each(function(group, i) {
+                        if (last !== group) {
+                            $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                            last = group;
+                        }
+                    });
+                }
+            });
+            // Order by the grouping
+            $('#example tbody').on('click', 'tr.group', function() {
+                var currentOrder = table.order()[0];
+                if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                    table.order([2, 'desc']).draw();
+                } else {
+                    table.order([2, 'asc']).draw();
+                }
+            });
+        });
+    });
+    $('#example23').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+    </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="~/content/admin_content/board_gallery/dist/simple-lightbox.js"></script>
+<script>
+	$(function(){
+		var $gallery = $('.gallery a').simpleLightbox();
+
+		$gallery.on('show.simplelightbox', function(){
+			console.log('Requested for showing');
+		})
+		.on('shown.simplelightbox', function(){
+			console.log('Shown');
+		})
+		.on('close.simplelightbox', function(){
+			console.log('Requested for closing');
+		})
+		.on('closed.simplelightbox', function(){
+			console.log('Closed');
+		})
+		.on('change.simplelightbox', function(){
+			console.log('Requested for change');
+		})
+		.on('next.simplelightbox', function(){
+			console.log('Requested for next');
+		})
+		.on('prev.simplelightbox', function(){
+			console.log('Requested for prev');
+		})
+		.on('nextImageLoaded.simplelightbox', function(){
+			console.log('Next image loaded');
+		})
+		.on('prevImageLoaded.simplelightbox', function(){
+			console.log('Prev image loaded');
+		})
+		.on('changed.simplelightbox', function(){
+			console.log('Image changed');
+		})
+		.on('nextDone.simplelightbox', function(){
+			console.log('Image changed to next');
+		})
+		.on('prevDone.simplelightbox', function(){
+			console.log('Image changed to prev');
+		})
+		.on('error.simplelightbox', function(e){
+			console.log('No image found, go to the next/prev');
+			console.log(e);
+		});
+	});
+</script>
+
+    <!-- ============================================================== -->
+    <!-- Style switcher -->
+    <!-- ============================================================== -->
+    <script src="~/content/admin_content/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
 }
 
-</table>
+

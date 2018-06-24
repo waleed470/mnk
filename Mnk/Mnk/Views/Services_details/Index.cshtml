@@ -41,6 +41,8 @@
                             <thead>
                                 <tr>
                                     <th>Service Detail Name</th>
+                                    <th>Service </th>
+
                                     <th>Service Description</th>
                                     <th>Service Image</th>
                                     <th>Service Status</th>
@@ -51,6 +53,7 @@
                             <tfoot>
                                 <tr>
                                     <th>Service Detail Name</th>
+                                    <th>Service </th>
                                     <th>Service Description</th>
                                     <th>Service Image</th>
                                     <th>Service Status</th>
@@ -67,6 +70,7 @@
 
 
                                         <td> @item.Service_Detail_Name</td>
+                                        <td> @item.Services.Service_Name</td>
                                         <td> @item.Service_Detail_Description</td>
                                         <td> <img height="100" width="100" src="@Url.Content(item.Service_Detail_Image)" alt=""> </td>
                                         <td> @item.service_Status </td>
