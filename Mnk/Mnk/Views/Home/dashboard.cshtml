@@ -1,0 +1,125 @@
+﻿@using Mnk.Models
+
+
+@{
+    ViewBag.Title = "dashboard";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ApplicationDbContext db = new ApplicationDbContext();
+}
+
+<div class="container-fluid">
+    <!-- Row -->
+    <div class="card-group">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="m-b-0"><i class="mdi mdi-briefcase-check text-info"></i></h2>
+                        <h3 class="">@db.Boards.Count()</h3>
+                        <h6 class="card-subtitle">Total Boards</h6>
+                    </div>
+                    <div class="col-12">
+                        <div class="progress">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+        <!-- Column -->
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="m-b-0"><i class="mdi mdi-alert-circle text-success"></i></h2>
+                        @{ 
+                            DateTime mydate = DateTime.Now;
+                            int date = DateTime.Now.Day;
+                            int months = DateTime.Now.Month;
+                            int year = DateTime.Now.Year;
+                        }
+                        <h3 class=""> @db.Boards.Where(a => a.Board_date.Day == date && a.Board_date.Month == months && a.Board_date.Year == year).Count() </h3>
+                        <h6 class="card-subtitle"> Today Boards </h6>
+                    </div>
+                    <div class="col-12">
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 40%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+        <!-- Column -->
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="m-b-0"><i class="mdi mdi-wallet text-purple"></i></h2>
+                        <h3 class="">@db.Board_booking.Where(a => a.Booking_type == "Book").Count()</h3>
+                        <h6 class="card-subtitle">Total Book</h6>
+                    </div>
+                    <div class="col-12">
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 56%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+        <!-- Column -->
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="m-b-0"><i class="mdi mdi-buffer text-warning"></i></h2>
+                        <h3 class=""> @db.Board_booking.Where(a => a.Booking_type == "Hold").Count() </h3>
+                        <h6 class="card-subtitle">Total Hold</h6>
+                    </div>
+                    <div class="col-12">
+                        <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 26%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row -->
+</div>
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-hover earning-box">
+            <thead>
+                <tr>
+                    <th colspan="2" >User Name</th>
+                    
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @{  List<ApplicationUser> prt = db.Users.ToList();
+                    foreach (var item in prt.Where(m=> m.UserType=="Client"))
+                    {
+                        <tr>
+
+                            <td style="width:50px;"><span class="round"><img src="~/Contect/admin_content/assets/images/users/8.jpg" alt="user" width="50"></span></td>
+                            <td>
+                                <h6> @item.UserName </h6>
+                            </td>
+                            
+
+                        </tr>
+                        }
+                    }
+
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+                       

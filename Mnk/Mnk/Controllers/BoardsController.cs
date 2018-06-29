@@ -19,9 +19,19 @@ namespace Mnk.Controllers
         // GET: Boards
         public ActionResult Index()
         {
-            string idd = Convert.ToString(Session["UserId"]);
-            var boards = db.Boards.Where(b => b.Id == idd).ToList();
-            return View(boards);
+
+            if (User.IsInRole("Client") || User.IsInRole("Admin")) {
+                var boards = db.Boards.ToList();
+                return View(boards);
+            }
+            else
+            {
+                string idd = Convert.ToString(Session["UserId"]);
+                var boards = db.Boards.Where(b => b.Id == idd).ToList();
+                return View(boards);
+            }
+
+
         }
 
         public ActionResult oder_vender()
@@ -30,11 +40,21 @@ namespace Mnk.Controllers
             var boards = db.Board_booking.Where(b => b.Board.Id==idd).ToList();
             return View(boards);
         }
+
+        public ActionResult oder_client()
+        {
+            string idd = Convert.ToString(Session["UserId"]);
+            var boards = db.Board_booking.Where(b => b.Id == idd).ToList();
+            return View(boards);
+        }
+
+
         public ActionResult Availability (int id)
         {
             Board board_ag_id = db.Boards.Find(id);
             return View(board_ag_id);
         }
+
 
         [HttpPost]
         public ActionResult Availability (Board_Availbality Board_Availbality , Board Board)

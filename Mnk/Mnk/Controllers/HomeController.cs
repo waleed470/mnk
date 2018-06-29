@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Mnk.Models;
+using System.Runtime.Remoting.Contexts;
 
 namespace Mnk.Controllers
 {
@@ -16,6 +17,13 @@ namespace Mnk.Controllers
             ViewBag.message = TempData["message2"];
             return View(db.Contact_us.ToList());
         }
+
+        public ActionResult dashboard ()
+        {
+           
+            return View();
+        }
+
 
         public ActionResult Gallery()
         {
