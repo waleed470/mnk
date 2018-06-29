@@ -207,6 +207,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\real_estateController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\Services_detailsController.cs" />
     <Compile Include="Controllers\slidersController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
@@ -282,6 +283,10 @@
     <Compile Include="Migrations\201805310239369_new2.Designer.cs">
       <DependentUpon>201805310239369_new2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805310330530_sdfsf.cs" />
+    <Compile Include="Migrations\201805310330530_sdfsf.Designer.cs">
+      <DependentUpon>201805310330530_sdfsf.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201806021121522_new3.cs" />
     <Compile Include="Migrations\201806021121522_new3.Designer.cs">
       <DependentUpon>201806021121522_new3.cs</DependentUpon>
@@ -301,6 +306,14 @@
     <Compile Include="Migrations\201806221021589_new89.cs" />
     <Compile Include="Migrations\201806221021589_new89.Designer.cs">
       <DependentUpon>201806221021589_new89.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806230605530_asd.cs" />
+    <Compile Include="Migrations\201806230605530_asd.Designer.cs">
+      <DependentUpon>201806230605530_asd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806230616028_ali.cs" />
+    <Compile Include="Migrations\201806230616028_ali.Designer.cs">
+      <DependentUpon>201806230616028_ali.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201806250609516_newdatas12.cs" />
     <Compile Include="Migrations\201806250609516_newdatas12.Designer.cs">
@@ -325,6 +338,10 @@
     <Compile Include="Migrations\201806290700472_newdata424.cs" />
     <Compile Include="Migrations\201806290700472_newdata424.Designer.cs">
       <DependentUpon>201806290700472_newdata424.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806290928491_hg.cs" />
+    <Compile Include="Migrations\201806290928491_hg.Designer.cs">
+      <DependentUpon>201806290928491_hg.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -357,6 +374,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\1.jpg" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -472,6 +490,12 @@
     <Content Include="Views\real_estate\Edit.cshtml" />
     <Content Include="Views\real_estate\Index.cshtml" />
     <Content Include="Views\Boards\oder_vender.cshtml" />
+    <Content Include="Views\Home\Gallery.cshtml" />
+    <Content Include="Views\Services\Create.cshtml" />
+    <Content Include="Views\Services\Delete.cshtml" />
+    <Content Include="Views\Services\Details.cshtml" />
+    <Content Include="Views\Services\Edit.cshtml" />
+    <Content Include="Views\Services\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -552,6 +576,9 @@
     <EmbeddedResource Include="Migrations\201805310239369_new2.resx">
       <DependentUpon>201805310239369_new2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805310330530_sdfsf.resx">
+      <DependentUpon>201805310330530_sdfsf.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806021121522_new3.resx">
       <DependentUpon>201806021121522_new3.cs</DependentUpon>
     </EmbeddedResource>
@@ -566,6 +593,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806221021589_new89.resx">
       <DependentUpon>201806221021589_new89.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806230605530_asd.resx">
+      <DependentUpon>201806230605530_asd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806230616028_ali.resx">
+      <DependentUpon>201806230616028_ali.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806250609516_newdatas12.resx">
       <DependentUpon>201806250609516_newdatas12.cs</DependentUpon>
@@ -584,6 +617,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806290700472_newdata424.resx">
       <DependentUpon>201806290700472_newdata424.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806290928491_hg.resx">
+      <DependentUpon>201806290928491_hg.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

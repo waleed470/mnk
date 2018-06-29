@@ -16,7 +16,7 @@ namespace Mnk.Models
         [DataType(DataType.EmailAddress)]
         public string Contact_email { get; set; }
         [Required]
-        public string Contact_phone { get; set; }
+       public string Contact_phone { get; set; }
         public string Contact_subject { get; set; }
         [Required]
         public string Contact_Message { get; set; }

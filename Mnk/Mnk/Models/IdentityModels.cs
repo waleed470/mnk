@@ -61,5 +61,6 @@ namespace Mnk.Models
 
         public System.Data.Entity.DbSet<Mnk.Models.real_estate> real_estate { get; set; }
         public System.Data.Entity.DbSet<Mnk.Models.Board_booking> Board_booking { get; set; }
+        public System.Data.Entity.DbSet<Mnk.Models.Contact_us> Contact_us { get; set; }
     }
 }
