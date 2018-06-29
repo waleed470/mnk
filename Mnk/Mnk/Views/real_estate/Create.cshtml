@@ -1,32 +1,31 @@
-﻿@model Mnk.Models.Services_details
-    @using Mnk.Models;
+﻿@model Mnk.Models.real_estate
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-    ApplicationDbContext db = new ApplicationDbContext();
 }
 
 @section Css {
+    <link href="~/content/admin_content/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/content/admin_content/assets/plugins/html5-editor/bootstrap-wysihtml5.css" />
+    <!-- Custom CSS -->
+    <link href="~/content/admin_content/css/style.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="~/content/admin_content/css/colors/blue.css" id="theme" rel="stylesheet">
+    <link rel="stylesheet" href="~/content/admin_content/assets/plugins/dropify/dist/css/dropify.min.css">
 
-    
-<link href="~/content/admin_content/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="~/content/admin_content/assets/plugins/html5-editor/bootstrap-wysihtml5.css" />
-<!-- Custom CSS -->
-<link href="~/content/admin_content/css/style.css" rel="stylesheet">
-<!-- You can change the theme colors from here -->
-<link href="~/content/admin_content/css/colors/blue.css" id="theme" rel="stylesheet">
-<link rel="stylesheet" href="~/content/admin_content/assets/plugins/dropify/dist/css/dropify.min.css">
+    <!-- summernotes CSS -->
+    <link href="~/content/admin_content/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/content/admin_content/assets/plugins/switchery/dist/switchery.min.css" rel="stylesheet" />
+    <link href="~/content/admin_content/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <!-- You can change the theme colors from here -->
 
-<!-- summernotes CSS -->
-<link href="~/content/admin_content/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
-<link href="~/content/admin_content/assets/plugins/switchery/dist/switchery.min.css" rel="stylesheet" />
-<link href="~/content/admin_content/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
-<!-- Custom CSS -->
-<!-- You can change the theme colors from here -->
-
-<link href="~/content/admin_content/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="~/content/admin_content/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
 }
+
+
+
 
 
 
@@ -35,13 +34,13 @@
 
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor"> Edit </h3>
+        <h3 class="text-themecolor">Add New Real Estate</h3>
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Services Details</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Real Estate</a></li>
 
-            <li class="breadcrumb-item active">Edit</li>
+            <li class="breadcrumb-item active">Add New Real Estate</li>
         </ol>
     </div>
     <div class="">
@@ -50,16 +49,14 @@
 </div>
 
 
+@using (Html.BeginForm("Create", "real_estate", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
 
-<div class="container-fluid">
-    <!-- ============================================================== -->
-    <!-- Start Page Content -->
-    <!-- ============================================================== -->
-    @using (Html.BeginForm("Edit", "Services_details", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary()
-        @Html.HiddenFor(model => model.Service_Detail_Id)
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -67,71 +64,45 @@
 
                         <form class="floating-labels m-t-40">
                             <div class="form-group m-b-40">
-                                <label for="input1">Service Subject</label>
-                                <input type="text" name="Service_Detail_Name" value="@(Model.Service_Detail_Name)" class="form-control" id="input1">
+                                <label for="input1">Real Estate Name</label>
+                                <input type="text" name="real_name" value="" class="form-control" id="input1">
                                 <span class="bar"></span>
 
-
                             </div>
-
-                            <div class="form-group m-b-40">
-                                <h4 class="card-title"> Services </h4>
-                                <select class="select2 form-control custom-select" name="Service_Id" style="width: 100%; height:36px;">
-
-
-                                   @foreach (var item2 in db.Servicess.ToList())
-                                   {
-                                    <option value="@item2.Service_Id" @(Model.Service_Id == item2.Service_Id ? "selected='selected'" : "")>@item2.Service_Name</option>
-                                   }
-
-
-                                </select>
-                            </div>
-
 
                             <div class="form-group">
-                                <textarea class="textarea_editor form-control"      name="Service_Detail_Description" rows="15" placeholder="Enter text ...">@(Model.Service_Detail_Description)</textarea>
+                                <textarea class="textarea_editor form-control" name="real_discription" rows="15" placeholder="Enter Discription ..."></textarea>
                             </div>
 
-
-
-
-
-
-
                             <div class="floating-labels m-t-40">
-
-                                <h4 class="card-title">Service Details Image</h4>
+                                <h4 class="card-title">Real Estate Image</h4>
                                 <label for="input-file-now"></label>
-                                <input type="file" name="doc" id="input-file-now" class="dropify" value="@if (Model.Service_Detail_Image != null) { @Url.Content(Model.Service_Detail_Image) }" />
+                                <input type="file" name="doc" id="input-file-now" class="dropify" />
                                 <span class="bar"></span>
 
 
                             </div>
+
+                            
                             <p style="margin-top:50px;"></p>
 
-                            <div class="form-group m-b-40">
-                                <label for="input6">Services STATUS</label>
-                                <select class="form-control" name="Slider_Status">
-                                    <option value="true" @(true == Model.service_Status ? "selected='selected'" : "")>Active</option>
-                                    <option value="false" @(false == Model.service_Status ? "selected='selected'" : "")>InActive</option>
-                                </select><span class="bar"></span>
-
-                            </div>
-
-                            <p style="margin-top:50px;"></p>
-
-
-
-
-                            <button type="submit" name="Edit" class="btn waves-effect waves-light btn-outline-primary">Save</button>
+                            <button type="submit" value="Create" class="btn waves-effect waves-light btn-outline-primary">Create</button>
                         </form>
                     </div>
                 </div>
+
+
+
             </div>
+
+
+
         </div>
-    }
-</div>
+    </div>
+    <!-- ============================================================== -->
+}
+
+
 
 
 @section Scripts {
@@ -236,12 +207,3 @@
     <script src="~/content/admin_content/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
 
 }
-
-
-
-
-
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

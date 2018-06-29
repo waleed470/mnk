@@ -11,7 +11,6 @@ namespace Mnk.Models
     {
         public override string Email { get; set; }
         public string MobileNo { get; set; }
-        public string UserName { get; set; }
         public string UserType { get; set; }
         public string User_Adress { get; set; }
         public bool Status { get; set; }
@@ -59,5 +58,8 @@ namespace Mnk.Models
         public System.Data.Entity.DbSet<Mnk.Models.Services_details> Services_details { get; set; }
 
         public System.Data.Entity.DbSet<Mnk.Models.Board_image> Board_image { get; set; }
+
+        public System.Data.Entity.DbSet<Mnk.Models.real_estate> real_estate { get; set; }
+        public System.Data.Entity.DbSet<Mnk.Models.Board_booking> Board_booking { get; set; }
     }
 }

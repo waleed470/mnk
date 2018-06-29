@@ -1,20 +1,21 @@
-﻿@model IEnumerable<Mnk.Models.Gallery>
-
+﻿@model IEnumerable<Mnk.Models.Board_booking>
+@using Mnk.Models
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "oder_vender";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-}
+    ApplicationDbContext db = new ApplicationDbContext();
 
+}
 
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor"> Gallery Details </h3>
+        <h3 class="text-themecolor"> Board Request </h3>
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Gallery</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)"> Vender </a></li>
 
-            <li class="breadcrumb-item active">Gallery Details</li>
+            <li class="breadcrumb-item active">Board Request</li>
         </ol>
     </div>
     <div class="">
@@ -36,44 +37,44 @@
                         <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>Image Title</th>
-                                    <th>Image</th>
-                                    <th>Image Status</th>
-                                    <th>Image Date</th>
-                                    <th>Action</th>
+                                    <th>Board Site code</th>
+                                    <th> Board Traffic to </th>
+                                    <th> Board traffic From </th>
+                                    <th> Board Booking type </th>
+                                    <th> To </th>
+                                    <th> From </th>
+                                    <th> User Name </th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>Image Title</th>
-                                    <th>Image</th>
-                                    <th>Image Status</th>
-                                    <th>Image Date</th>
-                                    <th>Action</th>
+                                    <th>Board Site code</th>
+                                    <th> Board Traffic to </th>
+                                    <th> Board traffic From </th>
+                                    <th> Board Booking type </th>
+                                    <th> To </th>
+                                    <th> From </th>
+                                    <th> User Name </th>
                                 </tr>
                             </tfoot>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
+                                    
+                                    
                                     <tr>
 
 
 
 
-                                        <td> @item.Gallery_title</td>
-                                        @if (item.Gallery_image == null)
-                                        {
-                                            <td> No Image</td>
-                                        }
-                                        else
-                                        {
-                                            <td> <img height="100" width="100" src="@Url.Content(item.Gallery_image)" alt=""> </td>
-
-                                        }
-                                        <td> @item.Gallery_status </td>
-                                        <td> @item.Gallery_date</td>
-                                        <td> <a href="~/Galleries/Edit?Id=@item.Gallery_Id" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                             <a href="~/Galleries/Delete?Id=@item.Gallery_Id" class="on-default remove-row"><i class="fa fa-trash-o"></i></a> </td>
+                                        <td> @item.Board.Broard_Site_code</td>
+                                        
+                                        <td> @item.Board.Broard_Traffic_to </td>
+                                        <td> @item.Board.Broard_Traffic_from</td>
+                                        <td> @item.Booking_type</td>
+                                        <td> @item.Booking_to</td>
+                                        <td> @item.Booking_from</td>
+                                        <td> @item.ApplicationUser.UserName</td>
                                     </tr>
                                 }
                             </tbody>
@@ -153,6 +154,10 @@
     <!-- ============================================================== -->
     <script src="~/content/admin_content/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
 }
+
+
+
+
 
 
 

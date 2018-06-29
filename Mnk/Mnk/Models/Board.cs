@@ -10,18 +10,20 @@ namespace Mnk.Models
     {
         [Key]
         public int Broard_Id { get; set; }
-        [Required]
+        
         public string Broard_Site_code { get; set; }
-        [Required]
+        
         public string Broard_Traffic_from { get; set; }
-        [Required]
+       
         public string Broard_Traffic_to { get; set; }
-        [Required]
+        
         public int Broard_Width { get; set; }
-        [Required]
+        
         public int Broard_Height { get; set; }
         public DateTime Board_date { get; set; }
 
+        public string Id { get; set; }
+        public virtual  ApplicationUser ApplicationUser { get; set; }
 
 
         public int Board_Medium_Id { get; set; }

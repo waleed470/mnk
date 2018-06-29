@@ -15,11 +15,75 @@ namespace Mnk.Controllers
     public class BoardsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        
         // GET: Boards
         public ActionResult Index()
         {
-               return View(db.Boards.ToList());
+            string idd = Convert.ToString(Session["UserId"]);
+            var boards = db.Boards.Where(b => b.Id == idd).ToList();
+            return View(boards);
+        }
+
+        public ActionResult oder_vender()
+        {
+            string idd = Convert.ToString(Session["UserId"]);
+            var boards = db.Board_booking.Where(b => b.Board.Id==idd).ToList();
+            return View(boards);
+        }
+        public ActionResult Availability (int id)
+        {
+            Board board_ag_id = db.Boards.Find(id);
+            return View(board_ag_id);
+        }
+
+        [HttpPost]
+        public ActionResult Availability (Board_Availbality Board_Availbality , Board Board)
+        {
+            if (ModelState.IsValid)
+            {
+
+                var Board_Availbility_update = db.Boards_Availability.Where(m => m.Board_id == Board.Broard_Id);
+                foreach (var item in Board_Availbility_update)
+                {
+                    item.Availability_status = false;
+                }
+                Board_Availbality.Availability_status = true;
+                Board_Availbality.Board_id = Board.Broard_Id;
+                db.Boards_Availability.Add(Board_Availbality);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult hold_book(Board_booking Board_booking, string type , Board Board)
+        {
+            if (ModelState.IsValid)
+            {
+                
+                if (type == "Hold")
+                {
+                    Board_booking.Booking_type = "Hold";
+                    Board_booking.Booking_from = Board_booking.Booking_to.AddDays(3);
+                    Board_booking.Broard_Id = Board.Broard_Id;
+                    string idd = Convert.ToString(Session["UserId"]);
+                    Board_booking.Id = idd;
+                    
+                }
+                if (type == "Book")
+                {
+                    Board_booking.Booking_type = "Book";
+                    Board_booking.Broard_Id = Board.Broard_Id;
+                    string idd = Convert.ToString(Session["UserId"]);
+                    Board_booking.Id = idd;
+
+                }
+                db.Board_booking.Add(Board_booking);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         // GET: Boards/Details/5
@@ -58,6 +122,8 @@ namespace Mnk.Controllers
             
             if (ModelState.IsValid)
             {
+                string idd = Convert.ToString(Session["UserId"]);
+                board.Id = idd;
                 board.Board_date = DateTime.Now;
                 db.Boards.Add(board);
                 db.SaveChanges();
@@ -121,11 +187,49 @@ namespace Mnk.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( Board board)
+        public ActionResult Edit( Board board ,Board_Availbality Board_Availbality, Board_image Board_image, HttpPostedFileBase []doc)
         {
+            
+
+
             if (ModelState.IsValid)
             {
-                db.Entry(board).State = EntityState.Modified;
+                Board Board_update = db.Boards.Find(board.Broard_Id);
+                Board_update.Broard_Site_code = Board_update.Broard_Site_code;
+                Board_update.Broard_Traffic_from = Board_update.Broard_Traffic_from;
+                Board_update.Broard_Traffic_to = Board_update.Broard_Traffic_to;
+                Board_update.Broard_Width = Board_update.Broard_Width;
+                Board_update.Broard_Height = Board_update.Broard_Height;
+                Board_update.Board_Medium_Id = Board_update.Board_Medium_Id;
+                Board_update.Board_City_Id = Board_update.Board_City_Id;
+                Board_update.Board_Location_Id = Board_update.Board_Location_Id;
+
+
+                var Board_image_update = db.Board_image.Where(m => m.Board_id == board.Broard_Id);
+
+                foreach (var item in Board_image_update)
+                {
+                    db.Board_image.Remove(item);
+                }
+
+                foreach (var item in doc)
+                {
+                    var filename = Path.GetFileName(item.FileName);
+                    var extension = Path.GetExtension(filename).ToLower();
+                    if (extension == ".jpg" || extension == ".png")
+                    {
+                        var path = HostingEnvironment.MapPath(Path.Combine("~/Content/Images/", filename));
+                        item.SaveAs(path);
+                        Board_image.image = "~/Content/Images/" + filename;
+                        Board_image.Board_id = board.Broard_Id;
+                        db.Board_image.Add(Board_image);
+                        db.SaveChanges();
+
+                    }
+                }
+
+
+                db.Entry(Board_update).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
