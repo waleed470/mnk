@@ -1,91 +1,102 @@
 ﻿@model Mnk.Models.Board
+    @using Mnk.Models
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ApplicationDbContext db = new ApplicationDbContext();
 }
 
-<h2>Details</h2>
+@section Css{
 
-<div>
-    <h4>Board</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Board_Availbality.Availability_name)
-        </dt>
+    <link href="~/content/admin_content/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Popup CSS -->
+    <link href="~/content/admin_content/assets/plugins/Magnific-Popup-master/dist/magnific-popup.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/content/admin_content/css/style.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="~/content/admin_content/css/colors/blue.css" id="theme" rel="stylesheet">
 
-        <dd>
-            @Html.DisplayFor(model => model.Board_Availbality.Availability_name)
-        </dd>
+}
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Board_city.Board_City_name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Board_city.Board_City_name)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Board_Location.Board_location_name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Board_Location.Board_location_name)
-        </dd>
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">Board Gallery</h3>
+        </div>
+        <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Board</a></li>
+                <li class="breadcrumb-item">Board Gallery</li>
+                
+            </ol>
+        </div>
+        <div>
+            <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+        </div>
+    </div>
+<div class="container-fluid">
+    <div class="row el-element-overlay">
+        <div class="col-md-12">
+            <h4 class="card-title">Gallery page</h4>
+            <h6 class="card-subtitle m-b-20 text-muted">you can make gallery like this</h6>
+        </div>
+        @foreach (var item1 in db.Board_image.Where(m => m.Board_id == Model.Broard_Id))
+        {
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Board_medium.Board_Medium_name)
-        </dt>
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="el-card-item">
+                        <div class="el-card-avatar el-overlay-1">
+                            <img height="200" width="200" src="@Url.Content(item1.image)" alt="user" />
+                            <div class="el-overlay">
+                                <ul class="el-info">
+                                    <li><a class="btn default btn-outline image-popup-vertical-fit" href="@Url.Content(item1.image)"><i class="icon-magnifier"></i></a></li>
 
-        <dd>
-            @Html.DisplayFor(model => model.Board_medium.Board_Medium_name)
-        </dd>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="el-card-content">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Broard_Site_code)
-        </dt>
+                            <br />
+                        </div>
+                    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Broard_Site_code)
-        </dd>
+                </div>
+            </div>
+        }
+    </div>
+   </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Broard_Traffic_from)
-        </dt>
+    @section Scripts {
 
-        <dd>
-            @Html.DisplayFor(model => model.Broard_Traffic_from)
-        </dd>
+        <script src="~/content/admin_content/assets/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap tether Core JavaScript -->
+        <script src="~/content/admin_content/assets/plugins/bootstrap/js/popper.min.js"></script>
+        <script src="~/content/admin_content/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <!-- slimscrollbar scrollbar JavaScript -->
+        <script src="~/content/admin_content/js/jquery.slimscroll.js"></script>
+        <!--Wave Effects -->
+        <script src="~/content/admin_content/js/waves.js"></script>
+        <!--Menu sidebar -->
+        <script src="~/content/admin_content/js/sidebarmenu.js"></script>
+        <!--stickey kit -->
+        <script src="~/content/admin_content/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+        <script src="~/content/admin_content/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+        <!--Custom JavaScript -->
+        <script src="~/content/admin_content/js/custom.min.js"></script>
+        <!-- Magnific popup JavaScript -->
+        <script src="~/content/admin_content/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
+        <script src="~/content/admin_content/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup-init.js"></script>
+        <!-- ============================================================== -->
+        <!-- Style switcher -->
+        <!-- ============================================================== -->
+        <script src="~/content/admin_content/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Broard_Traffic_to)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Broard_Traffic_to)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Broard_Width)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Broard_Width)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Broard_Height)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Broard_Height)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Broard_Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    }

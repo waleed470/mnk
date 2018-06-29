@@ -387,7 +387,9 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
-                       
+                     @if (User.IsInRole("Admin"))
+                     {
+
                         <li>
                             <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">  Slider </span></a>
                             <ul aria-expanded="false" class="collapse">
@@ -419,10 +421,20 @@
                                 <li><a href="~/clients/Index"> Client Details </a></li>
                             </ul>
                         </li>
-                       
+                     }
                         <li>
                             <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Board Element</span></a>
                             <ul aria-expanded="false" class="collapse">
+
+                                <li>
+                                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu"> Boards </span></a>
+                                    <ul aria-expanded="false" class="collapse">
+                                        <li><a href="~/Boards/Create"> Add New Board </a></li>
+                                        <li><a href="~/Boards/Index "> Board Details </a></li>
+                                    </ul>
+                                </li>
+                                @if (User.IsInRole("Admin"))
+                                { 
                                 <li>
                                     <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu"> City </span></a>
                                     <ul aria-expanded="false" class="collapse">
@@ -447,19 +459,14 @@
                                         <li><a href="~/Board_medium/Index"> Medium Details </a></li>
                                     </ul>
                                 </li>
-
-                                <li>
-                                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu"> Availbility </span></a>
-                                    <ul aria-expanded="false" class="collapse">
-                                        <li><a href="~/Board_Availbality/Create"> Add Availbility </a></li>
-                                        <li><a href="~/Board_Availbality/Index "> Availbility Details </a></li>
-                                    </ul>
-                                </li>
+                        
+                                }
 
                                 
                             </ul>
                         </li>
-
+@if (User.IsInRole("Admin"))
+{
                         <li>
                             <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu"> Services </span></a>
                             <ul aria-expanded="false" class="collapse">
@@ -485,14 +492,23 @@
                             </ul>
                         </li>
 
-                      
-                      
-                      
-                     
-                     
-                     
-          
-                       
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu"> Real Estate </span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="~/real_estate/Create"> Add Real Estate </a></li>
+                                <li><a href="~/real_estate/Index "> Real Estate Details </a></li>
+                            </ul>
+                        </li>
+
+
+}
+
+
+
+
+
+
+
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -515,7 +531,7 @@
             </div>
 
 
-            <footer class="footer"> © 2017 Admin Press Admin by themedesigner.in </footer>
+            <footer class="footer"> Mnk Advertising </footer>
         </div>
     </div>
 
@@ -549,6 +565,7 @@
             <!-- ============================================================== -->
             <script src="~/content/admin_content/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
             @RenderSection("Scripts", false)
+    @RenderSection("ScriptsTwo", false)
         
 </body>
 

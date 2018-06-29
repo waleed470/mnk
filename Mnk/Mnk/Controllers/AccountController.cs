@@ -73,23 +73,45 @@ namespace Mnk.Controllers
             {
                 return View(model);
             }
-
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            var user = await UserManager.FindAsync(model.UserName, model.Password);
+            if (user != null)
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                var usrRole = UserManager.GetRoles(user.Id);
+                
+                Session["UserName"] = user.UserName;
+                Session["UserId"] = user.Id;
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, change to shouldLockout: true
+
+                if (!await UserManager.IsEmailConfirmedAsync(user.Id))
+                {
+                    //string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account-Resend");
+
+                    // Uncomment to debug locally  
+                    // ViewBag.Link = callbackUrl;
+                    //ViewBag.errorMessage = "You must have a confirmed email to log on. "
+                    //                     + "The confirmation token has been resent to your email account.";
+                    //return View("Error");
+                    if (usrRole[0].ToString() == "Vendor")
+                    {
+                        await SignInAsync(user, model.RememberMe);
+                        return RedirectToAction("Index", "Boards");
+                    }
+
+                    //return RedirectToAction("Index", "Home");
+
+                        await SignInAsync(user, model.RememberMe); return RedirectToLocal(returnUrl);
+                }
+
+
+                else
+                {
+                    ModelState.AddModelError("", "Invalid username or password.");
+                }
             }
+            // If we got this far, something failed, redisplay form
+            ModelState.AddModelError("", "Invalid username or password.");
+            return View(model);
         }
 
         //
@@ -150,11 +172,11 @@ namespace Mnk.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model ,  string RoleName)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email,  MobileNo=model.MobileNo   };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email ,  MobileNo=model.MobileNo , Status= true ,  UserType= RoleName, User_Adress=model.User_Adress   };
                 var result = await UserManager.CreateAsync(user, model.Password);
 
 
@@ -170,7 +192,9 @@ namespace Mnk.Controllers
                 {
                     
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await this.UserManager.AddToRoleAsync(user.Id, RoleName);
+
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -183,6 +207,8 @@ namespace Mnk.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+            ViewBag.Roles = list;
             return View(model);
         }
 
@@ -295,7 +321,12 @@ namespace Mnk.Controllers
             // Request a redirect to the external login provider
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
-
+        private async Task SignInAsync(ApplicationUser user, bool isPersistent)
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+            var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
+        }
         //
         // GET: /Account/SendCode
         [AllowAnonymous]

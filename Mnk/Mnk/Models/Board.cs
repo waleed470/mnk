@@ -10,21 +10,24 @@ namespace Mnk.Models
     {
         [Key]
         public int Broard_Id { get; set; }
-        [Required]
-        public string Broard_Site_code { get; set; }
-        [Required]
-        public string Broard_Traffic_from { get; set; }
-        [Required]
-        public string Broard_Traffic_to { get; set; }
-        [Required]
-        public int Broard_Width { get; set; }
-        [Required]
-        public int Broard_Height { get; set; }
         
-    
+        public string Broard_Site_code { get; set; }
+        
+        public string Broard_Traffic_from { get; set; }
+       
+        public string Broard_Traffic_to { get; set; }
+        
+        public int Broard_Width { get; set; }
+        
+        public int Broard_Height { get; set; }
+        public DateTime Board_date { get; set; }
+
+        public string Id { get; set; }
+        public virtual  ApplicationUser ApplicationUser { get; set; }
+
 
         public int Board_Medium_Id { get; set; }
-        public virtual  Board_medium Board_medium { get; set; }
+        public virtual Board_medium Board_medium { get; set; }
 
 
         public int Board_City_Id { get; set; }
@@ -34,9 +37,6 @@ namespace Mnk.Models
         public int Board_Location_Id { get; set; }
         public virtual Board_Location Board_Location { get; set; }
 
-
-        public int Availability_id { get; set; }
-        public virtual Board_Availbality Board_Availbality { get; set; }
 
 
 

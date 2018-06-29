@@ -1,106 +1,115 @@
-﻿@model Mnk.Models.Board_Availbality
-
+﻿@model Mnk.Models.Board
+@using Mnk.Models
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Availability";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ApplicationDbContext db = new ApplicationDbContext();
 }
-@section Css {
-    <link href="~/content/admin_content/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/content/admin_content/assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
-    <!-- Page plugins css -->
-    <link href="~/content/admin_content/assets/plugins/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet">
-    <!-- Color picker plugins css -->
-    <link href="~/content/admin_content/assets/plugins/jquery-asColorPicker-master/css/asColorPicker.css" rel="stylesheet">
-    <!-- Date picker plugins css -->
-    <link href="~/content/admin_content/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
-    <!-- Daterange picker plugins css -->
-    <link href="~/content/admin_content/assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
-    <link href="~/content/admin_content/assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="~/content/admin_content/css/style.css" rel="stylesheet">
-    <!-- You can change the theme colors from here -->
-    <link href="~/content/admin_content/css/colors/blue.css" id="theme" rel="stylesheet">
 
-}
+@section Css {
+
+<link href="~/content/admin_content/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="~/content/admin_content/assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
+<!-- Page plugins css -->
+<link href="~/content/admin_content/assets/plugins/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet">
+<!-- Color picker plugins css -->
+<link href="~/content/admin_content/assets/plugins/jquery-asColorPicker-master/css/asColorPicker.css" rel="stylesheet">
+<!-- Date picker plugins css -->
+<link href="~/content/admin_content/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+<!-- Daterange picker plugins css -->
+<link href="~/content/admin_content/assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+<link href="~/content/admin_content/assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+
+
+<link href="~/content/admin_content/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="~/content/admin_content/css/style.css" rel="stylesheet">
+<!-- You can change the theme colors from here -->
+<link href="~/content/admin_content/css/colors/blue.css" id="theme" rel="stylesheet">
+<link rel="stylesheet" href="~/content/admin_content/assets/plugins/dropify/dist/css/dropify.min.css">
+
+<!-- summernotes CSS -->
+<link href="~/content/admin_content/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
+<link href="~/content/admin_content/assets/plugins/switchery/dist/switchery.min.css" rel="stylesheet" />
+<link href="~/content/admin_content/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+<!-- Custom CSS -->
+<!-- You can change the theme colors from here -->
+
+<link href="~/content/admin_content/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+<link href="~/content/admin_content/assets/plugins/dropzone-master/dist/dropzone.css" rel="stylesheet" type="text/css" />
+
+
+    }
+
 
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor">Add new Availbility</h3>
+        <h3 class="text-themecolor">Add New Availability</h3>
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Availbility</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Board</a></li>
 
-            <li class="breadcrumb-item active">Add new Availbilty</li>
+            <li class="breadcrumb-item active">Add New Availability</li>
         </ol>
     </div>
     <div class="">
         <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
     </div>
 </div>
-
-
-
-
 <div class="container-fluid">
     <!-- ============================================================== -->
     <!-- Start Page Content -->
     <!-- ============================================================== -->
-    @using (Html.BeginForm("Create", "Board_Availbality", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Availability", "Boards", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary()
+      
+        <input type="hidden" name="Broard_id" value="@(Model.Broard_Id)" />
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
 
                         <form class="floating-labels m-t-40">
-                            <div class="form-group m-t-40">
-                                <label for="input1"> Availbility </label>
-                                <input type="text" name="Availability_name" class="form-control" id="input1">
-                                <span class="bar"></span>
-
-
-                            </div>
-
-
-
-
-
                             <div class="example">
                                 <h5 class="box-title m-t-30">Availbility Date</h5>
-                                
+
                                 <div class="input-daterange input-group" id="date-range">
-                                    
-                                    <input type="text" class="form-control" name="Availability_to" />
+
+                                    <input type="text" class="form-control" name="Availability_to"  />
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-info b-0 text-white">TO</span>
                                     </div>
                                     <input type="text" class="form-control" name="Availability_from" />
                                 </div>
                             </div>
-
-
-
-
-
-
                             <p style="margin-top:50px;"></p>
-
-
-
-                            <button type="submit" name="Create" class="btn waves-effect waves-light btn-outline-primary">Save</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+                            <button type="submit" name="Availability" class="btn waves-effect waves-light btn-outline-primary">Save</button>
+                          </form>
+                     </div>
+                 </div>
+             </div>
         </div>
     }
 </div>
 
 
-@section Scripts {
+
+    
+
+
+
+
+
+
+
+
+
+        @section scripts{
 
     <script src="~/content/admin_content/assets/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
@@ -117,10 +126,8 @@
     <script src="~/content/admin_content/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
     <!--Custom JavaScript -->
     <script src="~/content/admin_content/js/custom.min.js"></script>
-    <!-- ============================================================== -->
-    <!-- Plugins for this page -->
-    <!-- ============================================================== -->
-    <!-- Plugin JavaScript -->
+    <!-- wysuhtml5 Plugin JavaScript -->
+
     <script src="~/content/admin_content/assets/plugins/moment/moment.js"></script>
     <script src="~/content/admin_content/assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
     <!-- Clock Plugin JavaScript -->
@@ -134,6 +141,7 @@
     <!-- Date range Plugin JavaScript -->
     <script src="~/content/admin_content/assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
     <script src="~/content/admin_content/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="~/content/admin_content/assets/plugins/dropzone-master/dist/dropzone.js"></script>
 
 
     <script>
@@ -209,10 +217,16 @@
                 days: 6
             }
         });
-   
+
 
     </script>
 
 
+
     <script src="~/content/admin_content/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
-}
+
+
+
+
+
+            }

@@ -51,8 +51,8 @@
                             <div class="form-group m-b-40">
                                 <label for="input6">Medium STATUS</label>
                                 <select class="form-control" name="Board_Medium_Status" value="@(Model.Board_Medium_Status)">
-                                    <option value="true">Active</option>
-                                    <option value="false">InActive</option>
+                                    <option value="true" @(true == Model.Board_Medium_Status ? "selected='selected'" : "")>Active</option>
+                                    <option value="false" @(false == Model.Board_Medium_Status ? "selected='selected'" : "")>InActive</option>
                                 </select><span class="bar"></span>
 
                             </div>

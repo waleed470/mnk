@@ -1,0 +1,59 @@
+﻿@model Mnk.Models.real_estate
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>real_estate</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.real_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.real_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.real_discription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.real_discription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.real_image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.real_image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.real_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.real_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.real_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.real_date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.real_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

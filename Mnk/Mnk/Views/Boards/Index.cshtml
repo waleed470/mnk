@@ -1,82 +1,451 @@
 ﻿@model IEnumerable<Mnk.Models.Board>
+@using Mnk.Models
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ApplicationDbContext db = new ApplicationDbContext();
 }
 
-<h2>Index</h2>
-testring
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Board_Availbality.Availability_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Board_city.Board_City_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Board_Location.Board_location_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Board_medium.Board_Medium_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Broard_Site_code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Broard_Traffic_from)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Broard_Traffic_to)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Broard_Width)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Broard_Height)
-        </th>
-        <th></th>
-    </tr>
+@section Css   {
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Board_Availbality.Availability_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Board_city.Board_City_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Board_Location.Board_location_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Board_medium.Board_Medium_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Broard_Site_code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Broard_Traffic_from)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Broard_Traffic_to)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Broard_Width)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Broard_Height)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Broard_Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Broard_Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Broard_Id })
-        </td>
-    </tr>
+<!-- Custom CSS -->
+
+<!-- You can change the theme colors from here -->
+<link href="~/content/admin_content/css/colors/blue.css" id="theme" rel="stylesheet">
+
+<link href="~/content/admin_content/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="~/content/admin_content/assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
+<!-- Page plugins css -->
+<link href="~/content/admin_content/assets/plugins/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet">
+<!-- Color picker plugins css -->
+<link href="~/content/admin_content/assets/plugins/jquery-asColorPicker-master/css/asColorPicker.css" rel="stylesheet">
+<!-- Date picker plugins css -->
+<link href="~/content/admin_content/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+<!-- Daterange picker plugins css -->
+<link href="~/content/admin_content/assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+<link href="~/content/admin_content/assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+
+
+<link href="~/content/admin_content/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="~/content/admin_content/css/style.css" rel="stylesheet">
+<!-- You can change the theme colors from here -->
+
+
+    }
+
+
+
+
+
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor"> Board Details </h3>
+    </div>
+    <div class="col-md-7 align-self-center">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Board</a></li>
+
+            <li class="breadcrumb-item active">Board Details</li>
+        </ol>
+    </div>
+    <div class="">
+        <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive m-t-40">
+                        <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Site Code</th>
+                                    <th>Traffic To</th>
+                                    <th>Traffic From</th>
+                                    <th> Height </th>
+                                    <th> Width </th>
+                                    <th> Board Image </th>
+                                    <th>  Image Details </th>
+                                    <th> Medium </th>
+                                    <th> Location </th>
+                                    <th> City </th>
+                                    <th> Availbility To </th>
+                                    <th> Availbility From </th>
+                                    <th> Board Date </th>
+                                    <th>Action</th>
+                                    <th>Book</th>
+                                    <th>Hold</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Site Code</th>
+                                    <th>Traffic To</th>
+                                    <th>Traffic From</th>
+                                    <th> Height </th>
+                                    <th> Width </th>
+                                    <th> Board Image </th>
+                                    <th>  Image Details </th>
+                                    <th> Medium </th>
+                                    <th> Location </th>
+                                    <th> City </th>
+                                    <th> Availbility To </th>
+                                    <th> Availbility From </th>
+                                    <th> Board Date </th>
+                                    <th>Action</th>
+                                    <th>Book</th>
+                                    <th>Hold</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @{var bookCount = 0;
+                                    var HoldCount = 0; }
+                                @foreach (var item in Model)
+                                {   HoldCount++;
+                                    bookCount++;
+
+                                    var count = 0;
+                                    <tr>
+
+
+
+
+                                        <td> @item.Broard_Site_code</td>
+                                        <td> @item.Broard_Traffic_to</td>
+                                        <td> @item.Broard_Traffic_from</td>
+                                        <td> @item.Broard_Height</td>
+                                        <td> @item.Broard_Width</td>
+
+                                        <td>
+                                            @foreach (var item1 in db.Board_image.Where(m => m.Board_id == item.Broard_Id))
+                                            {
+
+                                                
+                                                    if (count < 1)
+                                                    {
+                                                        count++;
+                                                        
+
+                                                            <img height="100" width="100" src="@Url.Content(item1.image)" class="img-fluid"> 
+                                                            <a href="~/Boards/Details?Id=@item.Broard_Id"> 
+                                                            <button type="submit" class="btn waves-effect waves-light btn-outline-primary">View </button> </a>
+
+                                                    }
+                      
+                                            }
+
+
+
+
+                                        </td>
+                                        <td>    </td>
+                                        <td> @item.Board_medium.Board_Medium_name </td>
+                                        <td> @item.Board_Location.Board_location_name</td>
+                                        <td> @item.Board_city.Board_City_name</td>
+                                        @foreach (var item2 in db.Boards_Availability.Where(m => m.Board_id == item.Broard_Id && m.Availability_status == true))
+                                        {
+
+                                            <td> @item2.Availability_to</td>
+                                            <td> @item2.Availability_from</td>
+                                        }
+
+                                        <td> @item.Board_date</td>
+
+
+                                        <td class="actions">
+                                            <a href="~/Boards/Edit?Id=@item.Broard_Id" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                            <a href="~/Boards/Availability?Id=@item.Broard_Id" class="col-sm-6 col-md-4 col-lg-3"> <i class="ti-plus"></i> </a>
+                                        </td>
+
+
+
+
+                                        <div id="responsive-modal_@bookCount" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    @using (Html.BeginForm("hold_book", "Boards", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                                                    {
+                                                         @Html.AntiForgeryToken()
+                                                          @Html.ValidationSummary()
+                                                        <input type="hidden" name="Broard_id" value="@(item.Broard_Id)" />
+                                                        <input type="hidden" value="Book" name="type" />
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title"> Board Booking </h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            <div class="example">
+                                                                <h5 class="box-title m-t-30"> Booking Date </h5>
+
+                                                                <div class="input-daterange input-group" id="date-range">
+
+                                                                    <input type="text" class="form-control" name="Booking_to" />
+                                                                    <div class="input-group-append">
+                                                                        <span class="input-group-text bg-info b-0 text-white">TO</span>
+                                                                    </div>
+                                                                    <input type="text" class="form-control" name="Booking_from" />
+                                                                </div>
+                                                            </div>
+                                                            <button type="submit" name="hold_book" class="btn btn-danger waves-effect waves-light">Save changes</button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        
+                                                        
+                                                    </div>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <td> <button type="submit" data-toggle="modal" data-target="#responsive-modal_@bookCount" class="btn waves-effect waves-light btn-outline-primary">Book </button> </td>
+
+                                        <div id="responsive-modall_@HoldCount" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    @using (Html.BeginForm("hold_book", "Boards", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                                                    {
+                                                        @Html.AntiForgeryToken()
+                                                        @Html.ValidationSummary()
+                                                        <input type="hidden" name="Broard_id" value="@(item.Broard_Id)" />
+                                                            <input type="hidden" value="Hold" name="type" />
+                                                        <div class="modal-header">
+                                                        <h4 class="modal-title">Board Holding</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        </div>
+                                                    <div class="modal-body">
+                                                        
+                                                        <form>
+                                                            <div class="example">
+                                                                <h5 class="box-title m-t-30"> Holding Date </h5>
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control mydatepicker" name="Booking_to" placeholder="mm/dd/yyyy">
+                                                                    <div class="input-group-append">
+                                                                        <span class="input-group-text"><i class="icon-calender"></i></span>
+                                                                    </div>
+                                                                </div>
+                                                                <button type="submit" name="hold_book" class="btn btn-danger waves-effect waves-light">Save changes</button>
+                                                            </div>
+                                                        </form>
+                                                        <p>You can only hold for 3 days from starting date.</p>
+                                                        
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        
+                                                        
+                                                    </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                     
+                                        <td> <button type="submit" data-toggle="modal" data-target="#responsive-modall_@HoldCount" class="btn waves-effect waves-light btn-outline-primary">Hold </button> </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+@section Scripts {
+<script src="~/content/admin_content/assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="~/content/admin_content/assets/plugins/bootstrap/js/popper.min.js"></script>
+<script src="~/content/admin_content/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="~/content/admin_content/js/jquery.slimscroll.js"></script>
+<!--Wave Effects -->
+<script src="~/content/admin_content/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="~/content/admin_content/js/sidebarmenu.js"></script>
+<!--stickey kit -->
+<script src="~/content/admin_content/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+<script src="~/content/admin_content/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+
+
+
+
+<script src="~/content/admin_content/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<!-- start - This is for export functionality only -->
+<script src="~/content/admin_content/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script src="~/content/admin_content/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+<script src="~/content/admin_content/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="~/content/admin_content/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script src="~/content/admin_content/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script src="~/content/admin_content/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script src="~/content/admin_content/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+<!-- end - This is for export functionality only -->
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+        $(document).ready(function() {
+            var table = $('#example').DataTable({
+                "columnDefs": [{
+                    "visible": false,
+                    "targets": 2
+                }],
+                "order": [
+                    [2, 'asc']
+                ],
+                "displayLength": 25,
+                "drawCallback": function(settings) {
+                    var api = this.api();
+                    var rows = api.rows({
+                        page: 'current'
+                    }).nodes();
+                    var last = null;
+                    api.column(2, {
+                        page: 'current'
+                    }).data().each(function(group, i) {
+                        if (last !== group) {
+                            $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                            last = group;
+                        }
+                    });
+                }
+            });
+            // Order by the grouping
+            $('#example tbody').on('click', 'tr.group', function() {
+                var currentOrder = table.order()[0];
+                if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                    table.order([2, 'desc']).draw();
+                } else {
+                    table.order([2, 'asc']).draw();
+                }
+            });
+        });
+    });
+    $('#example23').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+
+</script>
+
+
+<script src="~/content/admin_content/js/custom.min.js"></script>
+<!-- wysuhtml5 Plugin JavaScript -->
+
+<script src="~/content/admin_content/assets/plugins/moment/moment.js"></script>
+<script src="~/content/admin_content/assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+<!-- Clock Plugin JavaScript -->
+<script src="~/content/admin_content/assets/plugins/clockpicker/dist/jquery-clockpicker.min.js"></script>
+<!-- Color Picker Plugin JavaScript -->
+<script src="~/content/admin_content/assets/plugins/jquery-asColorPicker-master/libs/jquery-asColor.js"></script>
+<script src="~/content/admin_content/assets/plugins/jquery-asColorPicker-master/libs/jquery-asGradient.js"></script>
+<script src="~/content/admin_content/assets/plugins/jquery-asColorPicker-master/dist/jquery-asColorPicker.min.js"></script>
+<!-- Date Picker Plugin JavaScript -->
+<script src="~/content/admin_content/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<!-- Date range Plugin JavaScript -->
+<script src="~/content/admin_content/assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<script src="~/content/admin_content/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="~/content/admin_content/assets/plugins/dropzone-master/dist/dropzone.js"></script>
+
+
+<script>
+        $('#mdate').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
+        $('#timepicker').bootstrapMaterialDatePicker({ format: 'HH:mm', time: true, date: false });
+        $('#date-format').bootstrapMaterialDatePicker({ format: 'dddd DD MMMM YYYY - HH:mm' });
+
+        $('#min-date').bootstrapMaterialDatePicker({ format: 'DD/MM/YYYY HH:mm', minDate: new Date() });
+        // Clock pickers
+        $('#single-input').clockpicker({
+            placement: 'bottom',
+            align: 'left',
+            autoclose: true,
+            'default': 'now'
+        });
+        $('.clockpicker').clockpicker({
+            donetext: 'Done',
+        }).find('input').change(function () {
+            console.log(this.value);
+        });
+        $('#check-minutes').click(function (e) {
+            // Have to stop propagation here
+            e.stopPropagation();
+            input.clockpicker('show').clockpicker('toggleView', 'minutes');
+        });
+        if (/mobile/i.test(navigator.userAgent)) {
+            $('input').prop('readOnly', true);
+        }
+        // Colorpicker
+        $(".colorpicker").asColorPicker();
+        $(".complex-colorpicker").asColorPicker({
+            mode: 'complex'
+        });
+        $(".gradient-colorpicker").asColorPicker({
+            mode: 'gradient'
+        });
+        // Date Picker
+        jQuery('.mydatepicker, #datepicker').datepicker();
+        jQuery('#datepicker-autoclose').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+        jQuery('#date-range').datepicker({
+            toggleActive: true
+        });
+        jQuery('#datepicker-inline').datepicker({
+            todayHighlight: true
+        });
+        // Daterange picker
+        $('.input-daterange-datepicker').daterangepicker({
+            buttonClasses: ['btn', 'btn-sm'],
+            applyClass: 'btn-danger',
+            cancelClass: 'btn-inverse'
+        });
+        $('.input-daterange-timepicker').daterangepicker({
+            timePicker: true,
+            format: 'MM/DD/YYYY h:mm A',
+            timePickerIncrement: 30,
+            timePicker12Hour: true,
+            timePickerSeconds: false,
+            buttonClasses: ['btn', 'btn-sm'],
+            applyClass: 'btn-danger',
+            cancelClass: 'btn-inverse'
+        });
+        $('.input-limit-datepicker').daterangepicker({
+            format: 'MM/DD/YYYY',
+            minDate: '06/01/2015',
+            maxDate: '06/30/2015',
+            buttonClasses: ['btn', 'btn-sm'],
+            applyClass: 'btn-danger',
+            cancelClass: 'btn-inverse',
+            dateLimit: {
+                days: 6
+            }
+        });
+
+
+</script>
+
+
 }
 
-</table>
+

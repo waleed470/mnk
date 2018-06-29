@@ -11,14 +11,15 @@ namespace Mnk.Models
         [Key]
         public int Availability_id { get; set; }
         [Required]
-        public string Availability_name { get; set; }
-        [Required]
         public DateTime Availability_to { get; set; }
         [Required]
         public DateTime Availability_from { get; set; }
 
         public bool Availability_status { get; set; }
 
-        public DateTime Availability_Date { get; set; }
+        public int Board_id { get; set; }
+        public virtual Board Board { get; set; }
+
     }
 }
+
