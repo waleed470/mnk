@@ -16,10 +16,6 @@
     <link rel="icon" href="~/Content/Site_content/images/favicon.ico" type="image/x-icon">    
 </head>
 
-
-
-
-
 <body>
     <!--header search-->
     <section class="header-search">
@@ -83,39 +79,13 @@
                                 </div>
                                 <div class="navbar-collapse collapse clearfix">
                                     <ul class="navigation clearfix">
-                                        <li class="current">
-                                            <a href="index-2.html">Home</a>
-                                        </li>
-                                        <li>
-                                            <a href="about.html">About Us</a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#">Services</a>
-                                            <ul>
-                                                <li><a href="service.html">Our Service</a></li>
-                                                <li><a href="service-details.html">Service Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#">Pages</a>
-                                            <ul>
-                                                <li><a href="team.html">Our Team</a></li>
-                                                <li><a href="gallery.html">Our Gallery</a></li>
-                                                <li><a href="faq.html">Faq's</a></li>
-                                                <li><a href="error.html">Error Page</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#">News</a>
-                                            <ul>
-                                                <li><a href="our-blog.html">Blog Classic</a></li>
-                                                <li><a href="blog-details.html">Blog Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="contact.html">Contact</a>
-                                        </li>
-                                    </ul>
+                                                <li class="@ViewBag.current"><a href="~/Home/Index">Home</a></li>
+                                                <li class="@ViewBag.AboutCurrent"><a href="~/Home/About">About Us</a></li>
+                                                <li class="@ViewBag.ServicesCurrent"><a href="~/Services/index">Services</a></li>
+                                                <li class="@ViewBag.GalleryCurrent"><a href="~/Home/Gallery">Gallery</a></li>        
+                                                <li class="@ViewBag.RealCurrent"><a href="~/Home/Real_Estate">Real Estate</a></li>
+                                                <li class="@ViewBag.ContactCurrent"><a href="~/Home/Contact">Contact</a></li>
+                                      </ul>
                                 </div>
                             </nav>
                             <div class="info-box">
@@ -137,7 +107,7 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-12 col-xs-12">
                         <div class="logo-box">
-                            <a href="index-2.html"></a>
+                            <a href="~/Home/Index"></a>
                         </div>
                     </div>
                     <div class="col-md-9 col-sm-12 col-xs-12">
@@ -152,44 +122,16 @@
                                 </div>
                                 <div class="navbar-collapse collapse clearfix">
                                     <ul class="navigation clearfix">
-                                        <li class="current">
-                                            <a href="index-2.html">Home</a>
-                                        </li>
-                                        <li>
-                                            <a href="about.html">About Us</a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#">Services</a>
-                                            <ul>
-                                                <li><a href="service.html">Our Service</a></li>
-                                                <li><a href="service-details.html">Service Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#">Pages</a>
-                                            <ul>
-                                                <li><a href="team.html">Our Team</a></li>
-                                                <li><a href="gallery.html">Our Gallery</a></li>
-                                                <li><a href="faq.html">Faq's</a></li>
-                                                <li><a href="error.html">Error Page</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#">News</a>
-                                            <ul>
-                                                <li><a href="our-blog.html">Blog Classic</a></li>
-                                                <li><a href="blog-details.html">Blog Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="contact.html">Contact</a>
-                                        </li>
+                                        <li class="@ViewBag.current"><a href="~/Home/Index">Home</a></li>
+                                        <li class="@ViewBag.AboutCurrent"><a href="~/Home/About">About Us</a></li>
+                                        <li class="@ViewBag.ServicesCurrent"><a href="~/Services/index">Services</a></li>
+                                        <li class="@ViewBag.GalleryCurrent"><a href="~/Home/Gallery">Gallery</a></li>
+                                        <li class="@ViewBag.RealCurrent"><a href="~/Home/Real_Estate">Real Estate</a></li>
+                                        <li class="@ViewBag.ContactCurrent"><a href="~/Home/Contact">Contact</a></li>
                                     </ul>
                                 </div>
                             </nav>
-                            <div class="info-box">
-                                <div class="button"><a href="#" class="btn-one style-one radi">Get A Quote</a></div>
-                            </div>
+                           
                         </div>
                     </div>
                 </div>

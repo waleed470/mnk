@@ -1,0 +1,62 @@
+﻿@using Mnk.Models
+@model Mnk.Models.Services_details
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Sitelayout.cshtml";
+    ApplicationDbContext db = new ApplicationDbContext();
+}
+
+ <!-- page title -->
+    <div class="about-bg centered">
+        <div class="container">
+            <div class="text">Service Details</div>
+        </div>
+    </div>
+    <!-- end page title -->
+
+    <!-- bread-crumb -->
+    <div class="bread-crumb">
+        <div class="container">
+            <div class="text"><a href="index-2.html">Home</a><i class="fa fa-angle-right"></i> Service Details
+            <div class="share"><i class="fa fa-share-alt" aria-hidden="true"></i>Share</div>
+            </div>
+        </div>
+    </div>
+    <!-- bread crumb end -->
+
+    <!-- service details -->
+    <section class="service-details">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12 service-colmun">
+                <div class="sidebar">
+@foreach (var item in db.Servicess.ToList())
+{
+                    <ul class="sidebar-list">
+                       @if (ViewBag.Current==item.Service_Id) { 
+                        <li><a class="active" href="~/Services/Details?id=@item.Service_Id">@item.Service_Name</a></li>
+                       }
+                       else
+                       {
+
+                        <li><a class="" href="~/Services/Details?id=@item.Service_Id">@item.Service_Name</a></li>
+                       }
+                     </ul>
+}
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-12 col-xs-12 service-colmun">
+                <div class="sidebar-details">
+                    <div class="content-style-one">
+                        
+                            <div class="img-box"><figure><img src="@Url.Content(Model.Service_Detail_Image)" alt=""></figure></div>
+                            <div class="title">@Model.Service_Detail_Name</div>
+                            <div class="text"><p>@Model.Service_Detail_Description</p></div> 
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- service details end -->

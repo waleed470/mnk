@@ -1,7 +1,166 @@
-﻿@{
+﻿
+@using Mnk.Models
+@{
     ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Sitelayout.cshtml";
+    ApplicationDbContext db = new ApplicationDbContext();
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<!-- bread-crumb -->
+<div class="bread-crumb">
+    <div class="container">
+        <div class="text">
+            <a href="index-2.html">Home</a><i class="fa fa-angle-right"></i> About us
+            <div class="share"><i class="fa fa-share-alt" aria-hidden="true"></i>Share</div>
+        </div>
+    </div>
+</div>
+<!-- bread crumb end -->
+<!-- about section -->
+<section class="about-section sec-pad">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 about-colmun">
+                <div class="about-content">
+                    <div class="about-title">
+                        <div class="section-title"><h2>About The Biznes</h2></div>
+                        <div class="title-text"></div>
+                    </div>
+                    <div class="text"><p>MNK is a young and dynamic media company specializing in Out-of-Home. We offer companies the best suited media to advertise their brands and reach their target demographics by pinpointing the media that will bring the highest returns (ROI) and brand recall. Every company is different and every company has different needs. In today's fast changing world every company needs an edge to keep up with today's ever-changing consumer trends and behaviors. The out-of-home advertising segment has increased in importance, due to a lack of viewership caused by busy work schedules and longer commutes. Out-of-Home advertising increases the number of connect points with consumers and engages consumers on different levels.</p></div>
+                    <ul class="list">
+                        <li>Mnk having powerfull advertisment</li>
+                        <li>Mnk give lot of Services </li>
+                        <li>Mnk having lot of clients</li>
+                    </ul>
+                    <div class="text"><p>MNK is specialized outdoor advertising agency  based in Lahore, Pakistan commenced in 2005 to fulfill many cries from advertisers for an organized service in an otherwise disorganized trade. We are one and only company whom is specialized in Transit Advertising sector and keep themselves in to thy way of searching opportunities .The founders Mr. Muhammad Kamran Bhattti with their years of outdoor advertising expertise keep the company ticking over on a daily basis.
+
+</p></div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 about-colmun">
+                <div class="img-box"><figure><img src="~/images/1.jpg" alt=""></figure></div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- about section end -->
+
+<!-- testimonial section -->
+<section class="testimonial-section sec-pad">
+    <div class="container">
+
+
+        <div class="testimonial-title centered">
+            <div class="section-title"><h2>Testimonials</h2></div>
+            <div class="title-text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusm temp </p></div>
+        </div>
+
+        <div class="testimonial-slider">
+@foreach (var item in db.testo_nomia.ToList())
+{
+            <div class="testimonial-content">
+
+
+                <div class="authore-info">
+                    <div class="img-box"><figure><img src="@Url.Content(item.Testo_nomia_image)" alt=""></figure></div>
+                    <div class="author-meta">
+                        <h4>@item.Testo_nomia_name</h4>
+                    </div>
+                </div>
+
+                <div class="text">
+                    <p>
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolore mquelaud
+                        antiumes.
+                    </p>
+                </div>
+              
+            </div>
+}
+            </div>
+
+        </div>
+
+</section>
+
+<!-- testimonial section end -->
+
+<!-- team section -->
+<section class="our-team sec-pad">
+    <div class="container">
+        <div class="team-title centered">
+            <div class="section-title"><h2>Our Experts</h2></div>
+            <div class="title-text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusm temp </p></div>
+        </div>
+        
+        <div class="row">
+
+            <div class="col-md-10 col-sm-12 col-xs-12 col-md-offset-1 team-colmun">
+
+                <div class="bxslider">
+@foreach (var item in db.Teams.ToList())
+{
+                    <div class="row">
+                        <div class="col-md-5 col-sm-5 col-xs-12 team-colmun">
+                            <div class="clearfix">
+                                <figure class="img-box pull-left">
+                                    <img src="@Url.Content(item.Team_member_image)" width="450" height="370" alt="">
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="col-md-7 col-sm-7 col-xs-12 team-colmun">
+                            <div class="team-content">
+                                <div class="team-info">
+                                    <div class="team-text"><a href="team.html">@item.Team_member_Name</a></div>
+                                    <span>@item.Team_member_Designation</span>
+                                </div>
+                                <div class="text">
+                                    <p>
+                                        Excepteur sint occaecat cupidatat  proident sunt culpa qui officia deserunt mollit an
+                                        imlab rum. Sed perspiciatis unde omnis is natus error sit voluptatem accusantium dolore mque laudant totam rem aperiam.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                      
+                    </div>
+}
+                    </div>
+
+                <div class="slider-pager">
+                    <div class="center">
+                        <ul class="nav-link list-inline">
+                            <li id="slider-prev"></li>
+                            <li id="slider-next"></li>
+                        </ul>
+                    </div>
+                    </div>
+                
+            </div>
+            <div class="col-md-10 col-sm-12 col-xs-12 col-md-offset-1 team-colmun">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="slider-pager">
+                                <ul class="list-inline thumb-box style2">
+                                    @{ var count = -1; }
+                                   @foreach (var item2 in db.Teams.ToList())
+                                   { count++;
+                                    <li>
+                                        <a class="active" data-slide-index="@count" href="#"><figure><img src="@Url.Content(item2.Team_member_image)" width="55" height="55" alt=""></figure></a>
+                                        
+
+                                    </li>
+                                   }
+                                     
+                                
+                                </ul>
+                            </div>  
+                        </div>
+                    </div>  
+                </div>
+        </div>
+       
+    </div>
+   
+</section>
+<!-- team section end -->

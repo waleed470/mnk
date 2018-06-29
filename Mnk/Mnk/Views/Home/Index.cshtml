@@ -1,31 +1,436 @@
-﻿@{
+﻿
+@using Mnk.Models
+@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Sitelayout.cshtml";
+    ApplicationDbContext db = new ApplicationDbContext();
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    
+
+
+    <!-- main slider -->
+    <section class="example main-slider">
+        <article class="content">
+            <div class="rev_slider_wrapper fullwidthbanner-container" data-source="gallery" id="rev_slider_486_1_wrapper" style="margin:0px auto;background-color:#ffffff;padding:0px;margin-top:0px;margin-bottom:0px;">
+                <!-- START REVOLUTION SLIDER 5.4.1 fullwidth mode -->
+
+
+                <div class="rev_slider fullwidthabanner" data-version="5.4.1" id="rev_slider_486_1" style="display:none;">
+                    <ul>
+                        <!-- SLIDE  -->
+                        <!-- SLIDE 1  -->
+                        @foreach (var item in db.sliders.ToList()){
+                        <li data-description="Science says that Women are generally happier" data-easein="default" data-easeout="default" data-fsmasterspeed="1500" data-fsslotamount="7" data-fstransition="fade" data-hideafterloop="0" data-hideslideonmobile="off" data-index="rs-1687" data-masterspeed="default" data-param1="" data-param10="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-rotate="0" data-saveperformance="off" data-slotamount="default" data-thumb="images/slider/1.jpg" data-title="" data-transition="parallaxvertical">
+                            <!-- MAIN IMAGE -->
+                            <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="@Url.Content(item.Slider_Image)"> <!-- LAYERS -->
+                            <div class="tp-caption tp-shape tp-shapewrapper tp-resizeme" data-basealign="slide" data-frames='[{"from":"opacity:0;","speed":1500,"to":"o:1;","delay":1000,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"opacity:0;","ease":"Power3.easeInOut"}]' data-height="full" data-hoffset="['0','0','0','0']" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingtop="[0,0,0,0]" data-responsive_offset="on" data-textalign="['left','left','left','left']" data-type="shape" data-voffset="['0','0','0','0']" data-whitespace="normal" data-width="full" data-x="['center','center','center','center']" data-y="['middle','middle','middle','middle']" id="slide-1687-layer-1" style="z-index: 5;text-transform:left;background-color:rgba(0, 0, 0, 0.35);border-color:rgba(0, 0, 0, 1.00);border-width:0px;">
+                            </div>
+
+
+
+                            <div class="tp-caption Newspaper-Title tp-resizeme" data-fontsize="['50','50','50','30']" data-frames='[{"from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","speed":1500,"to":"o:1;","delay":1000,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"auto:auto;","mask":"x:0;y:0;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]' data-height="none" data-hoffset="['50','50','50','30']" data-lineheight="['55','55','55','35']" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingtop="[0,0,0,0]" data-responsive_offset="on" data-textalign="['left','left','left','left']" data-type="text" data-voffset="['240','150','120','50']" data-whitespace="normal" data-width="['1600','1200','900','450']" data-x="['left','left','left','left']" data-y="['top','top','top','top']" id="slide-1687-layer-2" style="z-index: 6; min-width: 600px; max-width: 600px; white-space: normal;text-transform:left;">
+                                <h1>
+                                    @item.Slider_Title
+                                </h1>
+                            </div>
+
+                            
+                            <div class="tp-caption Newspaper-Subtitle tp-resizeme" data-frames='[{"from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","speed":1500,"to":"o:1;","delay":1000,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"auto:auto;","mask":"x:0;y:0;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]' data-height="none" data-hoffset="['50','50','50','30']" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingtop="[0,0,0,0]" data-responsive_offset="on" data-textalign="['left','left','left','left']" data-type="text" data-voffset="['410','310','350','420']" data-whitespace="normal" data-width="['640','640','600','450']" data-x="['left','left','left','left']" data-y="['top','top','top','top']" id="slide-1687-layer-3" style="z-index: 7; white-space: nowrap;text-transform:left;">
+                                <div class="text">
+                                    Dolor sit amet consectetur elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamco laboris
+                                    nisi ut aliquip ex ea commodo consequat.
+                                </div>
+                            </div>
+                        </li>
+                        }
+
+
+                        <!-- slider 1 end -->
+                    </ul>
+
+
+                    <div class="tp-bannertimer tp-bottom" style="height: 5px; background-color: rgba(166, 216, 236, 1.00);">
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </section>
+    <!-- main slider end -->
+    <!-- feature-section -->
+    <section class="feature-section sec-pad">
+        <div class="container">
+            <div class="feature-title centered">
+                <div class="section-title"><h2>Why The Biznes?</h2></div>
+                <div class="title-text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusm temp</p></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12 feature-colmun">
+                    <div class="single-item">
+                        <div class="img-box"><figure><img src="images/feature/1.jpg" alt=""></figure></div>
+                        <div class="single-content">
+                            <div class="icon-box"><i class="flaticon-graphic"></i></div>
+                            <h4>Business Advisor</h4>
+                            <div class="text">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipis
+                                    elit sed do eiusmod tempor incidunt labore et dolore magna aliqua.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 feature-colmun">
+                    <div class="single-item">
+                        <div class="img-box"><figure><img src="images/feature/2.jpg" alt=""></figure></div>
+                        <div class="single-content">
+                            <div class="icon-box"><i class="flaticon-graph"></i></div>
+                            <h4>Market Analyize</h4>
+                            <div class="text">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipis
+                                    elit sed do eiusmod tempor incidunt labore et dolore magna aliqua.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 feature-colmun">
+                    <div class="single-item">
+                        <div class="img-box"><figure><img src="images/feature/3.jpg" alt=""></figure></div>
+                        <div class="single-content">
+                            <div class="icon-box"><i class="flaticon-money"></i></div>
+                            <h4>Investment Plan</h4>
+                            <div class="text">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipis
+                                    elit sed do eiusmod tempor incidunt labore et dolore magna aliqua.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- feature section end -->
+
+    <!-- service section -->
+    <section class="service-section">
+        <div class="container-fullid">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-sm-12 service-colmun">
+                    <div class="service-title">
+                        <div class="sec-title"><h2>Our <span>Services</span></h2></div>
+                        <div class="text">
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit sed do eiusm temp or incididunt
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-12 col-xs-12 service-colmun">
+                   
+                    <div class="three-column-carousel">
+                    @foreach (var item in db.Servicess.ToList())
+                    {
+                        <div class="single-item">
+                            <div class="icon-box"><a href="service-details.html"><i class="flaticon-graph"></i></a></div>
+                            <h4><a href="service-details.html">@item.Service_Name</a></h4>
+                            <div class="text">
+                                @foreach (var item2 in db.Services_details.Where(m => m.Service_Id == item.Service_Id))
+                                {
+                                <p>
+                                  @item2.Service_Detail_Name
+                                </p>
+                                }
+                            </div>
+
+                        </div>
+}
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- feature section end -->
+   <!-- testimonial section -->
+<section class="testimonial-section sec-pad">
+    <div class="container">
+
+
+        <div class="testimonial-title centered">
+            <div class="section-title"><h2>Testimonials</h2></div>
+            <div class="title-text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusm temp </p></div>
+        </div>
+
+        <div class="testimonial-slider">
+            @foreach (var item in db.testo_nomia.ToList())
+            {
+                <div class="testimonial-content">
+
+
+                    <div class="authore-info">
+                        <div class="img-box"><figure><img src="@Url.Content(item.Testo_nomia_image)" alt=""></figure></div>
+                        <div class="author-meta">
+                            <h4>@item.Testo_nomia_name</h4>
+                        </div>
+                    </div>
+
+                    <div class="text">
+                        <p>
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolore mquelaud
+                            antiumes.
+                        </p>
+                    </div>
+
+                </div>
+            }
+        </div>
+
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+</section>
+
+<!-- testimonial section end -->
+    <!-- fact-counter -->
+    <section class="fact-counter centered">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12 counter-colmun">
+                    <div class="single-item">
+                        <article class="column wow fadeIn" data-wow-duration="0ms">
+                            <div class="count-outer"><span class="count-text" data-speed="1500" data-stop="25">0</span><span>+</span></div>
+                            <div class="text">Years Experience</div>
+                        </article>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 counter-colmun">
+                    <div class="single-item">
+                        <article class="column wow fadeIn" data-wow-duration="0ms">
+                            <div class="count-outer"><span class="count-text" data-speed="1500" data-stop="45">0</span><span>+</span></div>
+                            <div class="text">Awards Win</div>
+                        </article>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 counter-colmun">
+                    <div class="single-item">
+                        <article class="column wow fadeIn" data-wow-duration="0ms">
+                            <div class="count-outer"><span class="count-text" data-speed="1500" data-stop="1250">0</span><span>+</span></div>
+                            <div class="text">Happy Customers</div>
+                        </article>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 counter-colmun">
+                    <div class="single-item">
+                        <article class="column wow fadeIn" data-wow-duration="0ms">
+                            <div class="count-outer"><span class="count-text" data-speed="1500" data-stop="150">0</span><span>+</span></div>
+                            <div class="text">Our Expert Staffs</div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- fact-counter section end -->
+
+<!-- gallery section -->
+<section class="gallery-section sec-pad">
+    <div class="container">
+        <div class="gallery-title">
+            <div class="section-title"><h2>Our Gallery</h2></div>
+            <div class="title-text"><p>Excepteur sint occaecat cupidatat non proident sunt in culpa qui</p></div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="container-fullid">
+        <div class="gallery-slider">
+            @foreach (var item in db.Galleries.ToList())
+            {
+                <div class="single-item">
+
+                    <div class="img-box">
+
+                        <figure><img src="@Url.Content(item.Gallery_image)" width="384" height="270" alt=""></figure>
+                        <div class="overlay">
+                            <div class="box">
+                                <div class="content">
+                                    <a href="@Url.Content(item.Gallery_image)" class="lightbox-image"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                    <h5>@item.Gallery_title</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+        </div>
     </div>
-</div>
+</section>
+<!-- gallery section end ---->
+
+
+<!-- team section -->
+<section class="our-team sec-pad">
+    <div class="container">
+        <div class="team-title centered">
+            <div class="section-title"><h2>Our Experts</h2></div>
+            <div class="title-text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusm temp </p></div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-10 col-sm-12 col-xs-12 col-md-offset-1 team-colmun">
+
+                <div class="bxslider">
+                    @foreach (var item in db.Teams.ToList())
+                    {
+                        <div class="row">
+                            <div class="col-md-5 col-sm-5 col-xs-12 team-colmun">
+                                <div class="clearfix">
+                                    <figure class="img-box pull-left">
+                                        <img src="@Url.Content(item.Team_member_image)" width="450" height="370" alt="">
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="col-md-7 col-sm-7 col-xs-12 team-colmun">
+                                <div class="team-content">
+                                    <div class="team-info">
+                                        <div class="team-text"><a href="team.html">@item.Team_member_Name</a></div>
+                                        <span>@item.Team_member_Designation</span>
+                                    </div>
+                                    <div class="text">
+                                        <p>
+                                            Excepteur sint occaecat cupidatat  proident sunt culpa qui officia deserunt mollit an
+                                            imlab rum. Sed perspiciatis unde omnis is natus error sit voluptatem accusantium dolore mque laudant totam rem aperiam.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+
+                <div class="slider-pager">
+                    <div class="center">
+                        <ul class="nav-link list-inline">
+                            <li id="slider-prev"></li>
+                            <li id="slider-next"></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-10 col-sm-12 col-xs-12 col-md-offset-1 team-colmun">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="slider-pager">
+                            <ul class="list-inline thumb-box style2">
+                                @{ var count = -1; }
+                                @foreach (var item2 in db.Teams.ToList())
+                                {
+                                    count++;
+                                    <li>
+                                        <a class="active" data-slide-index="@count" href="#"><figure><img src="@Url.Content(item2.Team_member_image)" width="55" height="55" alt=""></figure></a>
+
+
+                                    </li>
+                                }
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<!-- team section end -->
+
+    <!-- call-back-section -->
+    <section class="call-back sec-pad">
+        @using (Html.BeginForm("Contact2", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+        {
+
+            @Html.ValidationSummary()
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-12 col-xs-12 colmun">
+                    <div class="call-back-content">
+                        <span class="text-default">
+                            @ViewBag.message
+                        </span>
+                        <div class="call-back-title">
+                            <div class="section-title"><h2>Request A <span>Call Back</span></h2></div>
+                            <div class="title-text"></div>
+                        </div>
+                        <div class="form-area">
+                            
+                            <form action="~/Home/Index">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 colmun">
+                                        <input type="text" name="Contact_Name" placeholder="Your Name" required="">
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 colmun">
+                                        <input type="email" name="Contact_email" placeholder="Email" required="">
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 colmun">
+                                        <input type="text" name="Contact_phone" placeholder="Phone" required="">
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 colmun">
+                                        <input type="text" name="Contact_subject" placeholder="Subject" required="">
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 colmun">
+                                        <textarea name="Contact_Message" placeholder="Message..." style="resize: none;  color:aqua;" rows="8" required=""></textarea>
+                                    </div>
+                                    </div>
+                                <button type="submit" class="btn-one style-one radi">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </section>
+    <!-- call-back-section end -->
+
+    
+    <!-- sponsors section -->
+
+    <section class="sponsors-section">
+        
+        <div class="container">
+            <div class="jumbotron">
+                <div class="sponsors-area">
+                    <div class="team-title centered">
+                        <div class="section-title"><h2 class="text-primary">Our Clients</h2></div>
+                        <div class="title-text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusm temp </p></div>
+                    </div>
+                    <ul class="sponsors-slider">
+                        @foreach (var item3 in db.clients.ToList())
+                        {
+                        <li><a href="#"><figure><img src="@Url.Content(item3.Client_image)" width="250" height="110" alt=""></figure></a></li>
+                        }
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- sponsors section end -->
+
+    <!--Scroll to top-->
+    <div class="scroll-to-top scroll-to-target" data-target=".main-header"><span class="icon fa fa-angle-up"></span></div>

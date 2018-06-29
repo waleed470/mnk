@@ -1,0 +1,52 @@
+﻿@using Mnk.Models
+@{
+    ViewBag.Title = "Gallery";
+    Layout = "~/Views/Shared/_Sitelayout.cshtml";
+    ApplicationDbContext db = new ApplicationDbContext();
+}
+
+<!-- page title -->
+<div class="about-bg centered">
+    <div class="container">
+        <div class="text">Our Gallery</div>
+    </div>
+</div>
+<!-- end page title -->
+<!-- bread-crumb -->
+<div class="bread-crumb">
+    <div class="container">
+        <div class="text">
+            <a href="index-2.html">Home</a><i class="fa fa-angle-right"></i> Our Gallery
+            <div class="share"><i class="fa fa-share-alt" aria-hidden="true"></i>Share</div>
+        </div>
+    </div>
+</div>
+<!-- bread crumb end 
+
+<!-- gallery-page / gallery-section -->
+<section class="gallery-page gallery-section">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in db.Galleries.ToList())
+            {
+            <div class="col-md-4 col-sm-6 col-xs-12 gallery-colmun">
+                <div class="single-item">
+                    <div class="img-box">
+                        <figure><img src="@Url.Content(item.Gallery_image)" width="370" height="370" alt=""></figure>
+                        <div class="overlay">
+                            <div class="box">
+                                <div class="content">
+                                    <a href="@Url.Content(item.Gallery_image)" class="lightbox-image"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                    <h5>@item.Gallery_title</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- gallery-page / gallery-section end -->
+

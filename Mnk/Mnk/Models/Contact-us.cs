@@ -11,12 +11,15 @@ namespace Mnk.Models
         [Key]
         public int Contact_Id { get; set; }
         [Required]
-        public int Contact_Name { get; set; }
+        public string Contact_Name { get; set; }
         [Required]
         [DataType(DataType.EmailAddress)]
         public string Contact_email { get; set; }
         [Required]
-        public int Contact_Message { get; set; }
+        public string Contact_phone { get; set; }
+        public string Contact_subject { get; set; }
+        [Required]
+        public string Contact_Message { get; set; }
 
     }
 }
