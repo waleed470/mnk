@@ -22,7 +22,7 @@ namespace Mnk.Controllers
             var services_details = db.Services_details.Include(s => s.Services);
             return View(services_details.ToList());
         }
-
+        [HttpPost]
         // GET: Services_details/Details/5
         public ActionResult Details(int? id)
         {

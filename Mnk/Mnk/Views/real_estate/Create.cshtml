@@ -51,7 +51,7 @@
 
 @using (Html.BeginForm("Create", "real_estate", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
+  
 
     <div class="container-fluid">
         <!-- ============================================================== -->
@@ -70,9 +70,11 @@
 
                             </div>
 
+
                             <div class="form-group">
-                                <textarea class="textarea_editor form-control" name="real_discription" rows="15" placeholder="Enter Discription ..."></textarea>
+                                <textarea class="textarea_editor form-control" name="real_discription" rows="15" placeholder="Enter text ..."></textarea>
                             </div>
+
 
                             <div class="floating-labels m-t-40">
                                 <h4 class="card-title">Real Estate Image</h4>

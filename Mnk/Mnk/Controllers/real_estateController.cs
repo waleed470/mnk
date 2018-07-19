@@ -22,6 +22,12 @@ namespace Mnk.Controllers
             return View(db.real_estate.ToList());
         }
 
+        public ActionResult Real()
+        {
+            return View(db.real_form.ToList());
+        }
+
+
         // GET: real_estate/Details/5
         public ActionResult Details(int? id)
         {
@@ -47,9 +53,12 @@ namespace Mnk.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+       
+        [ValidateInput(false)]
         public ActionResult Create( real_estate real_estate , HttpPostedFileBase doc)
         {
+
+
             if (ModelState.IsValid)
             {
                 var filename = Path.GetFileName(doc.FileName);

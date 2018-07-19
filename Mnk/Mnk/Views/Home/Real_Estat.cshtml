@@ -1,0 +1,57 @@
+﻿@using Mnk.Models
+@model Mnk.Models.real_estate
+@{
+    ViewBag.Title = "real_estate";
+    Layout = "~/Views/Shared/_Sitelayout.cshtml";
+    ApplicationDbContext db = new ApplicationDbContext();
+}
+
+<!-- page title -->
+<div class="about-bg centered">
+    <div class="container">
+        <div class="text">Real Estate</div>
+    </div>
+</div>
+<!-- end page title -->
+<!-- bread-crumb -->
+<div class="bread-crumb">
+    <div class="container">
+        <div class="text">
+            <a href="index-2.html">Home</a><i class="fa fa-angle-right"></i> Real Estate
+            <div class="share"><i class="fa fa-share-alt" aria-hidden="true"></i>Share</div>
+        </div>
+    </div>
+</div>
+<!-- bread crumb end -->
+<!-- service details -->
+<section class="service-details">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12 service-colmun">
+                <div class="sidebar">
+                    @foreach (var item in db.real_estate.ToList())
+                    {
+                        <ul class="sidebar-list">
+
+
+                            <li><a href="~/Home/Real_Estat?id=@item.real_id">@item.real_name</a></li>
+
+                        </ul>
+                    }
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-12 col-xs-12 service-colmun">
+                <div class="sidebar-details">
+                    <div class="content-style-one">
+                        <div class="img-box"><figure><img src="@Url.Content(Model.real_image)" alt=""></figure></div>
+                        <div class="title">@Model.real_name</div>
+                        <div class="text">
+                            <p>@Model.real_discription</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- service details end -->

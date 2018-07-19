@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Mnk.Models.real_estate>
+﻿@model IEnumerable<Mnk.Models.real_form>
 
 @{
     ViewBag.Title = "Index";
@@ -7,7 +7,7 @@
 
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor"> Real Estate Details </h3>
+        <h3 class="text-themecolor"> Real Estate Application </h3>
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
@@ -36,21 +36,18 @@
                             <thead>
                                 <tr>
                                     <th>Real Estate Title</th>                                    
-                                    <th>Real Estate Image </th>
-                                    <th>Real Estate Discription</th>
-                                    <th>Real Estate Status</th>
-                                    <th>Real Estate Date</th>
-                                    <th>Action</th>
+                                    <th>Real Estate Area </th>
+                                    <th>Banner Size</th>
+                                    
+                                   
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>Real Estate Title</th>
-                                    <th>Real Estate Image </th>
-                                    <th>Real Estate Discription</th>
-                                    <th>Real Estate Status</th>
-                                    <th>Real Estate Date</th>
-                                    <th>Action</th>
+                                    <th>Real Estate Area </th>
+                                    <th>Real Estate Banner Size</th>
+                                    
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -61,24 +58,12 @@
 
 
 
-                                        <td> @item.real_name</td>
-
-                                        @if (item.real_image == null)
-                                        {
-                                            <td> No Image</td>
-                                        }
-                                        else
-                                        {
-                                            <td> <img height="100" width="100" src="@Url.Content(item.real_image)" alt=""> </td>
-
-                                        }
-                                        <td>@item.real_discription</td>
-                                        <td> @item.real_status </td>
-                                        <td> @item.real_date</td>
-                                        <td>
-                                            <a href="~/real_estate/Edit?Id=@item.real_id" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                            <a href="~/real_estate/Delete?Id=@item.real_id" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        </td>
+                                        <td> @item.site_name</td>
+                                        <td>@item.area</td>
+                                        <td>@item.banner_size</td>
+                                        
+                                        
+                                       
                                     </tr>
                                 }
                             </tbody>

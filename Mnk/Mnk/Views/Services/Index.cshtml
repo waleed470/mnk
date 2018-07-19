@@ -34,16 +34,16 @@
             <div class="col-md-4 col-sm-6 col-xs-12 service-colmun">
                 <div class="service-content">
                     <div class="icon-box"><a href="~/Services/Details?id=@item.Service_Id"><i class="flaticon-graph"></i></a></div>
-                    <h4>@item.Service_Name</h4>
-                    <div class="text">
-                        @foreach (var item2 in db.Services_details.Where(m => m.Service_Id == item.Service_Id))
-                        {
-                            <p>
-                                @item2.Service_Detail_Name
-                            </p>
-                        }
-                    </div>
-                </div>
+                    <a href="~/Services/Details?id=@item.Service_Id"><h4>@item.Service_Name</h4></a>
+                        <div class="text">
+                            @foreach (var item2 in db.Services_details.Where(m => m.Service_Id == item.Service_Id))
+                            {
+                                <p>
+                                    @item2.Service_Detail_Name
+                                </p>
+                            }
+                        </div>
+</div>
             </div>
 }
         </div>

@@ -63,7 +63,7 @@
     <section class="feature-section sec-pad">
         <div class="container">
             <div class="feature-title centered">
-                <div class="section-title"><h2>Why The Biznes?</h2></div>
+                <div class="section-title"><h2 class="text-primary">Why The Biznes?</h2></div>
                 <div class="title-text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusm temp</p></div>
             </div>
             <div class="row">
@@ -164,7 +164,7 @@
 
 
         <div class="testimonial-title centered">
-            <div class="section-title"><h2>Testimonials</h2></div>
+            <div class="section-title"><h2 class="text-primary">Testimonials</h2></div>
             <div class="title-text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusm temp </p></div>
         </div>
 
@@ -175,16 +175,18 @@
 
 
                     <div class="authore-info">
-                        <div class="img-box"><figure><img src="@Url.Content(item.Testo_nomia_image)" alt=""></figure></div>
-                        <div class="author-meta">
-                            <h4>@item.Testo_nomia_name</h4>
+                        <div class="col-md-5">
+                            <div class="img-box"><figure><img src="@Url.Content(item.Testo_nomia_image)" width="70" height="70" alt=""></figure></div>
                         </div>
+                            <div class="author-meta">
+                                <h4>@item.Testo_nomia_name</h4>
+                            </div>
+                        
                     </div>
 
                     <div class="text">
                         <p>
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolore mquelaud
-                            antiumes.
+                            @item.Testo_nomia_Massage
                         </p>
                     </div>
 
@@ -242,7 +244,7 @@
 <section class="gallery-section sec-pad">
     <div class="container">
         <div class="gallery-title">
-            <div class="section-title"><h2>Our Gallery</h2></div>
+            <div class="section-title"><h2 class="text-primary">Our Gallery</h2></div>
             <div class="title-text"><p>Excepteur sint occaecat cupidatat non proident sunt in culpa qui</p></div>
         </div>
     </div>
@@ -278,7 +280,7 @@
 <section class="our-team sec-pad">
     <div class="container">
         <div class="team-title centered">
-            <div class="section-title"><h2>Our Experts</h2></div>
+            <div class="section-title"><h2 class="text-primary">Our Experts</h2></div>
             <div class="title-text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusm temp </p></div>
         </div>
 

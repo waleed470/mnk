@@ -31,14 +31,36 @@ namespace Mnk.Controllers
             return View(db.Galleries.ToList());
 
         }
-        
-        public ActionResult Real_Estate()
+
+        public ActionResult Real_Estatee()
         {
+            var maxid = db.real_estate.Max(m => m.real_id);
+            real_estate real = db.real_estate.Find(maxid);
+            ViewBag.message = TempData["message"];
+            return View(real);
+        }
+    
+        public ActionResult Real_Estat(int id)
+        {
+            real_estate real = db.real_estate.Where(m => m.real_id == id).SingleOrDefault();
             ViewBag.RealCurrent = "current";
+            ViewBag.Current1 = id;
+            return View(real);
+        }
+        
+       
+        public ActionResult Real_Form(real_form real_form)
+        {
+            if (ModelState.IsValid)
+            {  
+                db.real_form.Add(real_form);
+                db.SaveChanges();
+                TempData["message"] = "Your Message Sent Successfully!";
+                return RedirectToAction("Real_Estatee");
+            }
 
-
-            return View();
-        } 
+            return View(real_form);
+        }
 
         public ActionResult About()
         {
@@ -55,7 +77,7 @@ namespace Mnk.Controllers
         } 
 
         [HttpPost]
-        
+      
         public ActionResult Contact(Contact_us Contact_us)
         {
             if (ModelState.IsValid)

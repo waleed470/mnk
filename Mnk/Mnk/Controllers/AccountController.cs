@@ -67,7 +67,7 @@ namespace Mnk.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<System.Web.Mvc.ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -117,7 +117,7 @@ namespace Mnk.Controllers
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
-        public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
+        public async Task<System.Web.Mvc.ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
             // Require that the user has already logged in via username/password or external login
             if (!await SignInManager.HasBeenVerifiedAsync())
@@ -132,7 +132,7 @@ namespace Mnk.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model)
+        public async Task<System.Web.Mvc.ActionResult> VerifyCode(VerifyCodeViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -172,7 +172,7 @@ namespace Mnk.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model ,  string RoleName)
+        public async Task<System.Web.Mvc.ActionResult> Register(RegisterViewModel model ,  string RoleName)
         {
             if (ModelState.IsValid)
             {
@@ -215,7 +215,7 @@ namespace Mnk.Controllers
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        public async Task<System.Web.Mvc.ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
             {
@@ -238,7 +238,7 @@ namespace Mnk.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        public async Task<System.Web.Mvc.ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -282,7 +282,7 @@ namespace Mnk.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
+        public async Task<System.Web.Mvc.ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -330,7 +330,7 @@ namespace Mnk.Controllers
         //
         // GET: /Account/SendCode
         [AllowAnonymous]
-        public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
+        public async Task<System.Web.Mvc.ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
             var userId = await SignInManager.GetVerifiedUserIdAsync();
             if (userId == null)
@@ -347,7 +347,7 @@ namespace Mnk.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SendCode(SendCodeViewModel model)
+        public async Task<System.Web.Mvc.ActionResult> SendCode(SendCodeViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -365,7 +365,7 @@ namespace Mnk.Controllers
         //
         // GET: /Account/ExternalLoginCallback
         [AllowAnonymous]
-        public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
+        public async Task<System.Web.Mvc.ActionResult> ExternalLoginCallback(string returnUrl)
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
@@ -397,7 +397,7 @@ namespace Mnk.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
+        public async Task<System.Web.Mvc.ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
             if (User.Identity.IsAuthenticated)
             {

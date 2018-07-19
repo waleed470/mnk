@@ -1,0 +1,126 @@
+﻿
+@using Mnk.Models
+@model Mnk.Models.real_estate
+@{
+    ViewBag.Title = "real_estate";
+    Layout = "~/Views/Shared/_Sitelayout.cshtml";
+    ApplicationDbContext db = new ApplicationDbContext();
+}
+
+<!-- page title -->
+<div class="about-bg centered">
+    <div class="container">
+        <div class="text">Real Estate</div>
+    </div>
+</div>
+<!-- end page title -->
+<!-- bread-crumb -->
+<div class="bread-crumb">
+    <div class="container">
+        <div class="text">
+            <a href="index-2.html">Home</a><i class="fa fa-angle-right"></i> Real Estate
+            <div class="share"><i class="fa fa-share-alt" aria-hidden="true"></i>Share</div>
+        </div>
+    </div>
+</div>
+
+<!---- Modal Area-->
+<br />
+
+<div class="text-center">
+    <h4 style="color:green">
+        @ViewBag.message
+    </h4>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
+        Fill out this Applicaion !
+    </button>
+</div>
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header bg-primary" >
+                    <h2 class="modal-title text-center" style="color:white;">Real Estate Form</h2>
+                    
+                </div>
+@using (Html.BeginForm("Real_Form", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+
+    @Html.ValidationSummary()
+
+                <!-- Modal body -->
+                <div class="modal-body">
+
+                    <form action="~/Home/Real_Form">
+                        
+                            <div class="input input-lg">
+                                <input type="text" name="site_name" class="form-control" placeholder="Name..." required="">
+                            </div>
+
+                            <div class="input input-lg col-lg-6">
+                                <input type="text" name="area" class="form-control" placeholder="Area..." required="">
+                            </div>
+   
+                    
+                            <div class="input input-lg col-lg-6">
+                                <input type="text" name="banner_size" class="form-control" placeholder="Banner Size..." required="">
+                            </div>
+
+                          <div>
+                            <br />
+                            <br />
+                        </div>
+
+                        <div class="input text-center">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+}
+                <!-- Modal footer -->
+                <div class="modal-footer bg-info">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+
+   
+        <!---- End Modal-->
+        <!-- bread crumb end -->
+        <!-- service details -->
+        <section class="service-details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12 service-colmun">
+                        <div class="sidebar">
+                            @foreach (var item in db.real_estate.ToList())
+                            {
+                                <ul class="sidebar-list">
+
+
+                                    <li><a href="~/Home/Real_Estat?id=@item.real_id">@item.real_name</a></li>
+
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-sm-12 col-xs-12 service-colmun">
+                        <div class="sidebar-details">
+                            <div class="content-style-one">
+                                <div class="img-box"><figure><img src="@Url.Content(Model.real_image)" alt=""></figure></div>
+                                <div class="title">@Model.real_name</div>
+                                <div class="text">
+                                    <p>@Model.real_discription</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- service details end -->

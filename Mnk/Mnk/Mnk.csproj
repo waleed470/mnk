@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActoinResult.cs" />
     <Compile Include="Controllers\adminhomeController.cs" />
     <Compile Include="Controllers\Admin_ServicesController.cs" />
     <Compile Include="Controllers\BoardsController.cs" />
@@ -343,6 +344,26 @@
     <Compile Include="Migrations\201806290928491_hg.Designer.cs">
       <DependentUpon>201806290928491_hg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807090808338_ali1.cs" />
+    <Compile Include="Migrations\201807090808338_ali1.Designer.cs">
+      <DependentUpon>201807090808338_ali1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807090819296_a1.cs" />
+    <Compile Include="Migrations\201807090819296_a1.Designer.cs">
+      <DependentUpon>201807090819296_a1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807091012116_a2.cs" />
+    <Compile Include="Migrations\201807091012116_a2.Designer.cs">
+      <DependentUpon>201807091012116_a2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807091028267_a3.cs" />
+    <Compile Include="Migrations\201807091028267_a3.Designer.cs">
+      <DependentUpon>201807091028267_a3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807091039049_a4.cs" />
+    <Compile Include="Migrations\201807091039049_a4.Designer.cs">
+      <DependentUpon>201807091039049_a4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Board.cs" />
@@ -358,6 +379,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\real_estate.cs" />
+    <Compile Include="Models\real_form.cs" />
     <Compile Include="Models\Services.cs" />
     <Compile Include="Models\Services_details.cs" />
     <Compile Include="Models\slider.cs" />
@@ -371,6 +393,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\script.sql" />
+    <Content Include="Content\Site_content\script22.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -499,6 +522,10 @@
     <Content Include="Views\Services\Index.cshtml" />
     <Content Include="Views\Boards\oder_client.cshtml" />
     <Content Include="Views\Home\dashboard.cshtml" />
+    <Content Include="Views\Home\Real_Estatee.cshtml" />
+    <Content Include="Views\Home\Real_Estat.cshtml" />
+    <Content Include="Views\Home\Real_Form.cshtml" />
+    <Content Include="Views\real_estate\Real.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -518,6 +545,7 @@
     <Folder Include="Content\Site_content\images\" />
     <Folder Include="Content\Site_content\js\" />
     <Folder Include="Content\Site_content\revolution\" />
+    <Folder Include="Views\RealEstate\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -623,6 +651,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806290928491_hg.resx">
       <DependentUpon>201806290928491_hg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807090808338_ali1.resx">
+      <DependentUpon>201807090808338_ali1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807090819296_a1.resx">
+      <DependentUpon>201807090819296_a1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807091012116_a2.resx">
+      <DependentUpon>201807091012116_a2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807091028267_a3.resx">
+      <DependentUpon>201807091028267_a3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807091039049_a4.resx">
+      <DependentUpon>201807091039049_a4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
